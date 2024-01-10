@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'en' ? 'ltr' : 'rtl' }}">
 
 <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/dist/css/adminlte.css">
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
