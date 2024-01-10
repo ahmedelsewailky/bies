@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('admin'),
             'remember_token' => str()->random(10),
+            'is_admin' => true
         ]);
     }
 }
