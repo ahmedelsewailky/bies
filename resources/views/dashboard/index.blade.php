@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 {{-- Define page title --}}
-@section('title', __('Dashboard'))
+@section('title', 'لوحة التحكم')
 
 {{-- Breadcrumbs --}}
 @section('breadcrumbs')
