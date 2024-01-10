@@ -23,10 +23,19 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : false }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             الرئيسية
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.*') ? 'active' : false }}">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            الأقسام
                         </p>
                     </a>
                 </li>
