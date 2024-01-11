@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{ $loop->index }}</td>
                             <td>{{ $category->name }}</td>
-                            <td></td>
+                            <td>{{ $category->getParentName($category->parent_id) }}</td>
                             <td>850</td>
                             <td>
                                 <form action="{{ route('category.destroy', $category->id) }}" method="post" class="d-flex">
