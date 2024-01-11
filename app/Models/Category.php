@@ -39,4 +39,18 @@ class Category extends Model
             return $category->slug = str()->slug($category->name);
         });
     }
+
+    /**
+     * Get the parent name of sub category.
+     *
+     * @param int $parentId
+     * @return void
+     */
+    public function getParentName($parentId)
+    {
+        if (!is_null($parentId)) {
+            return self::find($parentId)->first()->name;
+        }
+        return;
+    }
 }
