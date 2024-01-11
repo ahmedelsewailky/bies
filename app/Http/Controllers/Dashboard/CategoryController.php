@@ -23,7 +23,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categories.create')->with([
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -31,7 +33,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create($request->except('_token'));
+        return redirect()->route('category.index');
     }
 
     /**
@@ -39,7 +42,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -47,7 +50,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit')->with([
+            'categories' => Category::all(),
+            'category' => $category
+        ]);
     }
 
     /**
@@ -55,7 +61,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->except('_token'));
+        return redirect()->route('category.index');
     }
 
     /**
@@ -63,6 +70,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }
