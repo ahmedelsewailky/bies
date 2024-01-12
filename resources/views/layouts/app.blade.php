@@ -69,8 +69,6 @@
     <script src="{{ asset('dashboard') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dashboard') }}/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dashboard') }}/dist/js/dashboard.js"></script>
     @yield('js')
 </body>
 </html>

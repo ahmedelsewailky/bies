@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             CategorySeeder::class
         ]);
+
+        \App\Models\Post::factory(1)->create();
+        \App\Models\Actress::factory(10)->create();
     }
 }

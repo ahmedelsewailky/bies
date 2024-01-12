@@ -653,4 +653,6 @@
     <script src="{{ asset('dashboard') }}/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('dashboard') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset('dashboard') }}/dist/js/dashboard.js"></script>
 @endsection
