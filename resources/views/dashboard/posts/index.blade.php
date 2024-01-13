@@ -77,7 +77,7 @@
                             <td>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 mr-3">
-                                        <img src="https://via.placeholder.com/120x80" class="rounded-2" alt="poster">
+                                        <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80" class="rounded-lg" alt="poster">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6><a href="">{{ $post->title }}</a></h6>

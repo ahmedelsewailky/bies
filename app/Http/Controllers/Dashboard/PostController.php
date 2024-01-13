@@ -39,6 +39,8 @@ class PostController extends Controller
 
         $inputs['image'] = $request->image->store('movies', 'public');
 
+        $inputs['user_id'] = auth()->user()->id;
+
         $post = Post::create($inputs);
 
         if ($post) {

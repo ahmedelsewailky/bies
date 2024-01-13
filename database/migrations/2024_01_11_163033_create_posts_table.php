@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->date('year')->nullable();
             $table->string('quality')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('watch_link')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

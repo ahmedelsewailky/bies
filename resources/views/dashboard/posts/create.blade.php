@@ -114,7 +114,7 @@
                         <div class="row mb-3">
                             <label for="actress" class="col-md-3 col-form-label">الممثلين</label>
                             <div class="col-md-9">
-                                <select id="actress" name="actress" class="form-control select2 @error('actress') is-invalid @enderror" multiple>
+                                <select id="actress" name="actress[]" class="form-control select2 @error('actress') is-invalid @enderror" multiple>
                                     <option value="">--اختار--</option>
                                     @foreach (\App\Models\Actress::get() as $actress)
                                         <option value="{{ $actress->id }}" {{ old('actress') == $actress->id ? 'selected' : false }}>{{ $actress->name }}</option>
