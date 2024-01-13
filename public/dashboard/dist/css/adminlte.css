@@ -10,7 +10,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- @import url("./../fonts/fonts.css");
+@import url("./../fonts/fonts.css");
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -36693,6 +36693,40 @@ a.text-muted:hover {
     color: blue;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice {
     background-color: #343a40 !important;
+}
+
+.type-post-modal .modal-dialog {
+    max-width: 800px !important;
+}
+
+.type-post-modal .thumbnail {
+    border: 1px solid #d7d7d7;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.type-post-modal .thumbnail a {
+    width: 100%;
+    display: block;
+    min-height: 100%;
+    padding: 1.25rem;
+}
+.type-post-modal .thumbnail:hover {
+    background-color: whitesmoke;
+    border-color: dodgerblue;
+}
+
+.type-post-modal .thumbnail img {
+    width: 50px;
+    margin-bottom: 1.25rem;
+}
+
+.modal-header .close,
+.modal-header .mailbox-attachment-close {
+    padding: 1rem;
+    margin: -1rem auto -1rem -1rem;
 }

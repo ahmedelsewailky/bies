@@ -23,7 +23,7 @@
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between">
                 <h6 class="mb-0"><i class="fa fa-list mr-2"></i> جدول المنشورات</h6>
-                <a href="{{ route('posts.create') }}" class="btn btn-outline-primary">إضافة مشور جديد</a>
+                <a href="#" data-toggle="modal" data-target="#typeOfPostModal" class="btn btn-outline-primary">إضافة مشور جديد</a>
             </div>
         </div>
         <div class="card-body">
@@ -42,7 +42,8 @@
                     </div>
                     <div class="col-md-3">
                         <label for="search" class="form-label">بحث</label>
-                        <input type="search" name="search" id="search" class="form-control" placeholder="ابحث عن عنوان ما">
+                        <input type="search" name="search" id="search" class="form-control"
+                            placeholder="ابحث عن عنوان ما">
                     </div>
                     <div class="col-md-3 offset-3 align-self-end text-right">
                         <button type="submit" class="btn btn-primary">
@@ -77,7 +78,8 @@
                             <td>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 mr-3">
-                                        <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80" class="rounded-lg" alt="poster">
+                                        <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80"
+                                            class="rounded-lg" alt="poster">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6><a href="">{{ $post->title }}</a></h6>
@@ -171,6 +173,56 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade type-post-modal" id="typeOfPostModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">حدد الفئة المراد اضافتها</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <div class="modal-body py-4">
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <div class="thumbnail">
+                                    <a href="{{ route('posts.create') }}?type=movie">
+                                        <img src="{{ asset('dashboard/dist/img/icons/cinema.png') }}" alt="Movies icon">
+                                        <h6>فيلم</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="thumbnail">
+                                    <a href="{{ route('posts.create') }}?type=series">
+                                        <img src="{{ asset('dashboard/dist/img/icons/series.png') }}" alt="Movies icon">
+                                        <h6>مسلسل</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="thumbnail">
+                                    <a href="{{ route('posts.create') }}?type=program">
+                                        <img src="{{ asset('dashboard/dist/img/icons/coding.png') }}" alt="Movies icon">
+                                        <h6>برنامج</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="thumbnail">
+                                    <a href="{{ route('posts.create') }}?type=broadcast">
+                                        <img src="{{ asset('dashboard/dist/img/icons/broadcaster.png') }}" alt="Movies icon">
+                                        <h6>بودكاست</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
