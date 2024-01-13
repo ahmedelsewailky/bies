@@ -20,9 +20,10 @@ return new class extends Migration
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(User::class);
             $table->date('year')->nullable();
-            $table->string('image')->nullable();
-            $table->string('description')->nullable();
             $table->string('quality')->nullable();
+            $table->string('description')->nullable();
+            $table->string('watch_link')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

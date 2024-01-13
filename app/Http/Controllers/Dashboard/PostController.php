@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
+use App\Models\Actress;
 
 class PostController extends Controller
 {
@@ -33,7 +35,28 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        Post::create($request->except('_token'));
+        $inputs = $request->except(['_token', 'links', 'actress']);
+
+        $inputs['image'] = $request->image->store('movies', 'public');
+
+        $post = Post::create($inputs);
+
+        if ($post) {
+            foreach ($request->links as $link) {
+                DB::table('posts_links')->insert([
+                    'post_id' => $post->id,
+                    'link' => $link
+                ]);
+            }
+
+            foreach ($request->actress as $actor) {
+                DB::table('posts_actresses')->insert([
+                    'post_id' => $post->id,
+                    'actress_id' => $actor
+                ]);
+            }
+        }
+
         return redirect()->route('posts.index');
     }
 
