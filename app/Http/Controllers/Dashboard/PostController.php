@@ -35,31 +35,33 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $inputs = $request->except(['_token', 'links', 'actress']);
+        return $request;
 
-        $inputs['image'] = $request->image->store('movies', 'public');
+        // $inputs = $request->except(['_token', 'links', 'actress']);
 
-        $inputs['user_id'] = auth()->user()->id;
+        // $inputs['image'] = $request->image->store('movies', 'public');
 
-        $post = Post::create($inputs);
+        // $inputs['user_id'] = auth()->user()->id;
 
-        if ($post) {
-            foreach ($request->links as $link) {
-                DB::table('posts_links')->insert([
-                    'post_id' => $post->id,
-                    'link' => $link
-                ]);
-            }
+        // $post = Post::create($inputs);
 
-            foreach ($request->actress as $actor) {
-                DB::table('posts_actresses')->insert([
-                    'post_id' => $post->id,
-                    'actress_id' => $actor
-                ]);
-            }
-        }
+        // if ($post) {
+        //     foreach ($request->links as $link) {
+        //         DB::table('posts_links')->insert([
+        //             'post_id' => $post->id,
+        //             'link' => $link
+        //         ]);
+        //     }
 
-        return redirect()->route('posts.index');
+        //     foreach ($request->actress as $actor) {
+        //         DB::table('posts_actresses')->insert([
+        //             'post_id' => $post->id,
+        //             'actress_id' => $actor
+        //         ]);
+        //     }
+        // }
+
+        // return redirect()->route('posts.index');
     }
 
     /**

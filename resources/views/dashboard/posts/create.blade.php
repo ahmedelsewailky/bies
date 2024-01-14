@@ -7,7 +7,9 @@
 {{-- Breadcrumbs --}}
 @section('breadcrumbs')
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">إضافة منشور جديد</h1>
+        <h1 class="m-0 text-dark">
+            إضافة منشور جديد
+        </h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -22,7 +24,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h6>نموذج إضافة منشور</h6>
+            <div class="d-flex align-items-start">
+                <h6>نموذج إضافة منشور</h6>
+                @if (request()->has('type'))
+                    <a href="{{ route('posts.create') }}" title="اضف نوع اخر">
+                        <i class="fa fa-arrow-right ml-3"></i>
+                    </a>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -87,6 +96,12 @@
     <script>
         $(function() {
             $(".select2").select2();
+
+            $("#add").on("click", function() {
+                let input =
+                    `<input type="text" name="links[]" class="form-control mb-3 @error('links.*') is-invalid @enderror">`;
+                $(".download-link-inputs").append(input);
+            });
         });
     </script>
 @endsection

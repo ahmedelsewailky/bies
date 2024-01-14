@@ -66,24 +66,18 @@
 <div class="row mb-3">
     <label for="link_1" class="col-md-3 col-form-label">روابط التحميل</label>
     <div class="col-md-9">
-        <input type="text" id="link_1" name="links[]"
-            class="form-control mb-3 @error('links') is-invalid @enderror" placeholder="رابط التحميل الأول">
-        <input type="text" id="link_2" name="links[]"
-            class="form-control mb-3 @error('links') is-invalid @enderror" placeholder="رابط التحميل الثاني">
-        <input type="text" id="link_3" name="links[]"
-            class="form-control mb-3 @error('links') is-invalid @enderror" placeholder="رابط التحميل الثالث">
-        <input type="text" id="link_4" name="links[]"
-            class="form-control mb-3 @error('links') is-invalid @enderror" placeholder="رابط التحميل الرابع">
-        <input type="text" id="link_5" name="links[]"
-            class="form-control mb-3 @error('links') is-invalid @enderror" placeholder="رابط التحميل الخامس">
-        @error('links')
-            <p class="invalid-feedback">{{ $message }}</p>
-        @enderror
+        <div class="download-link-inputs">
+            <input type="text" id="link_1" name="links[]" class="form-control mb-3 @error('links.*') is-invalid @enderror">
+            @error('links.*')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+        </div>
+        <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط آخر</button>
     </div>
 </div>
 
 {{-- Submit --}}
-<div class="row">
+<div class="row border-top pt-3 mt-3">
     <div class="col-md-3"></div>
     <div class="col-md-9">
         <button type="submit" class="btn btn-primary">حفظ ونشر</button>
