@@ -70,5 +70,6 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('dashboard') }}/dist/js/adminlte.js"></script>
     @yield('js')
+    @include('sweetalert::alert')
 </body>
 </html>
