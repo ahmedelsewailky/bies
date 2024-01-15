@@ -15,11 +15,7 @@
     <label for="category_id" class="col-md-3 col-form-label">القسم</label>
     <div class="col-md-9">
         <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-            <option value="">--اختار--</option>
-            @foreach (\App\Models\Category::get() as $category)
-                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : false }}>
-                    {{ $category->name }}</option>
-            @endforeach
+            <option value="1">فيلم</option>
         </select>
         @error('category_id')
             <p class="invalid-feedback">{{ $message }}</p>
