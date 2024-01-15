@@ -2,18 +2,20 @@
 @extends('layouts.app')
 
 {{-- Define page title --}}
-@section('title', 'الأقسام')
+@section('title', 'المنشورات')
 
 {{-- Breadcrumbs --}}
 @section('breadcrumbs')
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">تعديل بيانات قسم</h1>
+        <h1 class="m-0 text-dark">
+            تعديل منشور
+        </h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">الرئيسية</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">الأقسام</a></li>
-            <li class="breadcrumb-item active">تعديل بيانات قسم</li>
+            <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">المنشورات</a></li>
+            <li class="breadcrumb-item active">تعديل بيانات منشور</li>
         </ol>
     </div><!-- /.col -->
 @endsection
@@ -22,51 +24,92 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h6>تعديل بيانات قسم: {{ $category->name }}</h6>
+            <div class="d-flex align-items-start">
+                @if (request()->has('type'))
+                    @if (request()->get('type') == 'movie')
+                        <h6>نموذج إضافة فيلم</h6>
+                    @elseif (request()->get('type') == 'series')
+                        <h6>نموذج إضافة مسلسل</h6>
+                    @elseif (request()->get('type') == 'program')
+                        <h6>نموذج إضافة برنامج</h6>
+                    @else
+                        <h6>نموذج إضافة بودكاست</h6>
+                    @endif
+                    <a href="{{ route('posts.create') }}" title="اضف نوع اخر">
+                        <i class="fa fa-arrow-right ml-3"></i>
+                    </a>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-7 offset-5">
-                    <form action="{{ route('category.update', $category->id) }}" method="post">
+                <div class="col-md-7">
+                    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        {{-- Name --}}
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-3 col-form-label">اسم القسم</label>
-                            <div class="col-md-9">
-                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $category->name }}">
-                                @error('name')
-                                    <p class="invalid-feedback">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
 
-                        {{-- Parent --}}
-                        <div class="row mb-3">
-                            <label for="parent_id" class="col-md-3 col-form-label">القسم الرئيسي</label>
-                            <div class="col-md-9">
-                                <select id="parent_id" name="parent_id" class="form-control @error('parent_id') is-invalid @enderror">
-                                    <option value="">--قسم رئيسي--</option>
-                                    @foreach ($categories as $cate)
-                                        <option value="{{ $cate->id }}" {{ $cate->id == $category->parent_id ? 'selected' : false }}>{{ $cate->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('parent_id')
-                                    <p class="invalid-feedback">{{ $message }}</p>
-                                @enderror
+                        @if (request()->has('type'))
+                            @include('dashboard.posts.forms._' . request()->get('type'))
+                        @else
+                            <h6 class="mb-5">يرجي تحديد فئة المنشور المراد اضافته اولاً</h6>
+                            <div class="row type-post-modal">
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type=movie">
+                                            <img src="{{ asset('dashboard/dist/img/icons/cinema.png') }}" alt="Movies icon">
+                                            <h6>فيلم</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type=series">
+                                            <img src="{{ asset('dashboard/dist/img/icons/series.png') }}" alt="Movies icon">
+                                            <h6>مسلسل</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type=program">
+                                            <img src="{{ asset('dashboard/dist/img/icons/coding.png') }}" alt="Movies icon">
+                                            <h6>برنامج</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type=broadcast">
+                                            <img src="{{ asset('dashboard/dist/img/icons/broadcaster.png') }}"
+                                                alt="Movies icon">
+                                            <h6>بودكاست</h6>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        {{-- Submit --}}
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-9">
-                                <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
-                            </div>
-                        </div>
+                        @endif
                     </form>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+{{-- Required for this page --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('dashboard/plugins/select2/css/select2.min.css') }}">
+@endsection
+
+@section('js')
+    <script src="{{ asset('dashboard/plugins/select2/js/select2.min.js') }}"></script>
+    <script>
+        $(function() {
+            $(".select2").select2();
+
+            $("#add").on("click", function() {
+                let input =
+                    `<input type="text" name="links[]" class="form-control mb-3 @error('links.*') is-invalid @enderror">`;
+                $(".download-link-inputs").append(input);
+            });
+        });
+    </script>
 @endsection

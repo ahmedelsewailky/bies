@@ -87,8 +87,40 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->except('_token'));
-        return redirect()->route('posts.index');
+        $inputs = $request->except(['_token', 'links', 'actress']);
+
+        $file = storage_path() . $post->image;
+        if (file_exists($file)) {
+            dd('Done');
+        } else {
+            dd($file);
+        }
+
+        // $inputs['image'] = $this->imageHandler($request);
+
+        // $inputs['user_id'] = auth()->user()->id;
+
+        // $post = Post::create($inputs);
+
+        // if ($post) {
+        //     foreach ($request->links as $link) {
+        //         DB::table('posts_links')->insert([
+        //             'post_id' => $post->id,
+        //             'link' => $link
+        //         ]);
+        //     }
+
+        //     if ($request->category_id != 2) {
+        //         foreach ($request->actress as $actor) {
+        //             DB::table('posts_actresses')->insert([
+        //                 'post_id' => $post->id,
+        //                 'actress_id' => $actor
+        //             ]);
+        //         }
+        //     }
+        // }
+
+        // return redirect()->route('posts.index');
     }
 
     /**

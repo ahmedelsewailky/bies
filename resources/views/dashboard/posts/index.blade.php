@@ -187,38 +187,16 @@
                       </div>
                     <div class="modal-body py-4">
                         <div class="row">
-                            <div class="col-12 col-md-3">
-                                <div class="thumbnail">
-                                    <a href="{{ route('posts.create') }}?type=movie">
-                                        <img src="{{ asset('dashboard/dist/img/icons/cinema.png') }}" alt="Movies icon">
-                                        <h6>فيلم</h6>
-                                    </a>
+                            @foreach (\App\Models\Category::get() as $category)
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type={{ $category->slug }}">
+                                            <img src="{{ asset('dashboard/dist/img/icons/'.$category->name.'.png') }}" alt="Movies icon">
+                                            <h6>{{ $category->name }}</h6>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <div class="thumbnail">
-                                    <a href="{{ route('posts.create') }}?type=series">
-                                        <img src="{{ asset('dashboard/dist/img/icons/series.png') }}" alt="Movies icon">
-                                        <h6>مسلسل</h6>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <div class="thumbnail">
-                                    <a href="{{ route('posts.create') }}?type=program">
-                                        <img src="{{ asset('dashboard/dist/img/icons/coding.png') }}" alt="Movies icon">
-                                        <h6>برنامج</h6>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <div class="thumbnail">
-                                    <a href="{{ route('posts.create') }}?type=broadcast">
-                                        <img src="{{ asset('dashboard/dist/img/icons/broadcaster.png') }}" alt="Movies icon">
-                                        <h6>بودكاست</h6>
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

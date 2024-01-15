@@ -12,17 +12,11 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $mainCategories = [
-            'افلام',
-            'برامج',
-            'مسلسلات',
-            'بودكاست',
-        ];
+        $mainCategories = ['افلام', 'برامج', 'مسلسلات', 'بودكاست',];
 
         foreach ($mainCategories as $category) {
             \App\Models\Category::create([
                 'name' => $category,
-                'slug' => str()->slug($category)
             ]);
         }
     }
