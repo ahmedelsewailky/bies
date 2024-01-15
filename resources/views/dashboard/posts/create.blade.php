@@ -25,8 +25,16 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-start">
-                <h6>نموذج إضافة منشور</h6>
                 @if (request()->has('type'))
+                    @if (request()->get('type') == 'movie')
+                        <h6>نموذج إضافة فيلم</h6>
+                    @elseif (request()->get('type') == 'series')
+                        <h6>نموذج إضافة مسلسل</h6>
+                    @elseif (request()->get('type') == 'program')
+                        <h6>نموذج إضافة برنامج</h6>
+                    @else
+                        <h6>نموذج إضافة بودكاست</h6>
+                    @endif
                     <a href="{{ route('posts.create') }}" title="اضف نوع اخر">
                         <i class="fa fa-arrow-right ml-3"></i>
                     </a>

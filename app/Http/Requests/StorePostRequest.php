@@ -24,11 +24,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'unique:posts'],
             'category_id' => ['required', 'exists:categories,id'],
-            'year' => ['required'],
             'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'description' => ['required', 'string', 'max:500'],
-            'quality' => ['required'],
-            'links.*' => ['required', 'url']
         ];
     }
 }

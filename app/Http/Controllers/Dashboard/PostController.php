@@ -6,7 +6,6 @@ use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
-use App\Models\Actress;
 
 class PostController extends Controller
 {
@@ -35,33 +34,33 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return $request;
+        $inputs = $request->except(['_token', 'links', 'actress']);
 
-        // $inputs = $request->except(['_token', 'links', 'actress']);
+        $inputs['image'] = $this->imageHandler($request);
 
-        // $inputs['image'] = $request->image->store('movies', 'public');
+        $inputs['user_id'] = auth()->user()->id;
 
-        // $inputs['user_id'] = auth()->user()->id;
+        $post = Post::create($inputs);
 
-        // $post = Post::create($inputs);
+        if ($post) {
+            foreach ($request->links as $link) {
+                DB::table('posts_links')->insert([
+                    'post_id' => $post->id,
+                    'link' => $link
+                ]);
+            }
 
-        // if ($post) {
-        //     foreach ($request->links as $link) {
-        //         DB::table('posts_links')->insert([
-        //             'post_id' => $post->id,
-        //             'link' => $link
-        //         ]);
-        //     }
+            if ($request->category_id != 2) {
+                foreach ($request->actress as $actor) {
+                    DB::table('posts_actresses')->insert([
+                        'post_id' => $post->id,
+                        'actress_id' => $actor
+                    ]);
+                }
+            }
+        }
 
-        //     foreach ($request->actress as $actor) {
-        //         DB::table('posts_actresses')->insert([
-        //             'post_id' => $post->id,
-        //             'actress_id' => $actor
-        //         ]);
-        //     }
-        // }
-
-        // return redirect()->route('posts.index');
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -99,5 +98,25 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index');
+    }
+
+    /**
+     * Handling posts image
+     *
+     * @param $request
+     */
+    private function imageHandler($request)
+    {
+        if ($request->category_id == 1) {
+            $folder = 'movie';
+        } elseif($request->category_id == 2) {
+            $folder = 'program';
+        } elseif ($request->category_id == 3) {
+            $folder = 'series';
+        } else {
+            $folder = 'broadcast';
+        }
+
+        return $request->image->store($folder, 'public');
     }
 }
