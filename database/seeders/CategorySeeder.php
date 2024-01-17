@@ -17,6 +17,7 @@ class CategorySeeder extends Seeder
         foreach ($mainCategories as $category) {
             \App\Models\Category::create([
                 'name' => $category,
+                'icon' => $category . '.png'
             ]);
         }
     }

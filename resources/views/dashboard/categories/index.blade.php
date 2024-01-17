@@ -27,6 +27,24 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row mb-3">
+                @foreach ($categories as $category)
+                    <div class="col-12 col-md-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 mr-3">
+                                <img src="{{ asset('dashboard/dist/img/icons\\') . $category->icon }}"
+                                    width="40"
+                                    alt="{{ $category->name }}">
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-semibold">{{ $category->name }}</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -41,7 +59,10 @@
                     @forelse ($categories as $category)
                         <tr>
                             <td>{{ $loop->index }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td>
+                                <img src="{{ asset('dashboard/dist/img/icons\\') . $category->icon }}" alt="">
+                                {{ $category->name }}
+                            </td>
                             <td>{{ $category->getParentName($category->parent_id) }}</td>
                             <td>850</td>
                             <td>
@@ -59,7 +80,7 @@
                     </tr>
                     @endforelse
                 </tbody>
-                <thead>
+                <tfoot>
                     <tr>
                         <th>#</th>
                         <th>اسم القسم</th>
@@ -67,7 +88,7 @@
                         <th>عدد المنشورات</th>
                         <th>الخيارات</th>
                     </tr>
-                </thead>
+                </tfoot>
             </table>
         </div>
     </div>
