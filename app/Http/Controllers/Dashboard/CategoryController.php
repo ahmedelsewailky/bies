@@ -86,43 +86,49 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        if ($request->parent_id) {
 
-            $inputs = $request->except(['_token', 'category_image']);
+        if (file_exists(storage_path('app\public\\') . str()->slug($category->name)))
 
-            // Convert from main to sub category.
-            if ($category->icon) {
-                // Remove old image.
-                unlink(public_path('dashboard/dist/img/icons/') . $category->icon);
+            rmdir(storage_path('app\public\\') . str()->slug($category->name));
 
-                // Remove category folder.
-                rmdir(storage_path('app\public\\') . str()->slug($request->name));
-            }
+        mkdir(storage_path('app\public\\') . str()->slug($request->name), 0777);
+
+
+
+
+
+        if ($request->icon) {
+            if ($category->icon)
+
+                if (file_exists(public_path('dashboard/dist/img/icons/') . $category->icon))
+
+                    unlink(public_path('dashboard/dist/img/icons/') . $category->icon);
+
+            $icon_name = str()->slug($request->name) . '.' . $request->icon->extension();
+
+            $request->icon->move(public_path('dashboard/dist/img/icons'), $icon_name);
+
+            $inputs['icon'] = $icon_name;
 
         } else {
-            if ($request->icon) {
-                // Assign name to icon request.
-                $icon_name = str()->slug($request->name) . '.' . $request->icon->extension();
 
-                // Remove old image.
-                unlink(public_path('dashboard/dist/img/icons/') . $category->icon);
-
-                // Move icon image to icons folder at public path.
-                $request->icon->move(public_path('dashboard/dist/img/icons'), $icon_name);
-
-                rmdir(storage_path('app\public\\') . str()->slug($request->name));
-
-                // Create folder with the same category name.
-                mkdir(storage_path('app\public\\') . str()->slug($request->name), 0777);
-
-                // Get inputs array.
-                $inputs = $request->except(['_token', 'parent_id']);
-
-                // Assign icons column value.
-                $inputs['icon'] = $icon_name;
-            }
             $inputs['icon'] = $category->icon;
+
         }
+
+        if (!$request->parent_id && !$request->icon) {
+
+            unlink(public_path('dashboard/dist/img/icons/') . $category->icon);
+
+            $icon_name = str()->slug($request->name) . '.' . $request->icon->extension();
+
+            $request->icon->move(public_path('dashboard/dist/img/icons'), $icon_name);
+
+            $inputs['icon'] = $icon_name;
+
+        }
+
+        $inputs = $request->except('_token');
 
         $category->update($inputs);
 
@@ -137,6 +143,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return redirect()->route('category.index');
     }
 }

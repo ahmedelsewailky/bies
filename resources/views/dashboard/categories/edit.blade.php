@@ -119,6 +119,12 @@
         $(function() {
             $('input[type="radio"]').click(function() {
                 $('.show').toggleClass("d-none");
+
+                if ($(this).attr('id') == 'main') {
+                    $('#parent_id').val("");
+                } else {
+                    $('#icon').val("");
+                }
             });
         });
     </script>

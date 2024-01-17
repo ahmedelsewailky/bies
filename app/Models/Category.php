@@ -46,10 +46,10 @@ class Category extends Model
      * @param int $parentId
      * @return void
      */
-    public function getParentName($parentId)
+    public function getParentName($id)
     {
-        if (!is_null($parentId)) {
-            return self::find($parentId)->first()->name;
+        if ($id) {
+            return self::find($id)->name;
         }
         return;
     }
