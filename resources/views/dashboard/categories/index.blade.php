@@ -19,77 +19,56 @@
 
 {{-- Page content --}}
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <div class="d-flex align-items-center justify-content-between">
-                <h6 class="mb-0"><i class="fa fa-list mr-2"></i> جدول الأقسام</h6>
-                <a href="{{ route('category.create') }}" class="btn btn-outline-primary">إضافة قسم جديد</a>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row mb-3">
-                @foreach ($categories as $category)
-                    <div class="col-12 col-md-3">
-                        <div class="d-flex">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0"><i class="fa fa-list mr-2"></i> جدول الأقسام</h6>
+        <a href="{{ route('category.create') }}" class="btn btn-outline-primary">إضافة قسم جديد</a>
+    </div>
+
+    <div class="row">
+        @foreach ($parents as $parent)
+            <div class="col-12 col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
                             <div class="flex-shrink-0 mr-3">
-                                <img src="{{ asset('dashboard/dist/img/icons\\') . $category->icon }}"
-                                    width="40"
-                                    alt="{{ $category->name }}">
+                                <img src="{{ asset('dashboard/dist/img/icons\\') . $parent->icon }}" width="40"
+                                    alt="{{ $parent->name }}">
                             </div>
                             <div class="flex-grow-1">
-                                <h6 class="fw-semibold">{{ $category->name }}</h6>
-
+                                <h6 class="fw-semibold mb-0">{{ $parent->name }}</h6>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
 
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>اسم القسم</th>
-                        <th>القسم الرئيسي</th>
-                        <th>عدد المنشورات</th>
-                        <th>الخيارات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($categories as $category)
-                        <tr>
-                            <td>{{ $loop->index }}</td>
-                            <td>
-                                <img src="{{ asset('dashboard/dist/img/icons\\') . $category->icon }}" alt="">
-                                {{ $category->name }}
-                            </td>
-                            <td>{{ $category->getParentName($category->parent_id) }}</td>
-                            <td>850</td>
-                            <td>
-                                <form action="{{ route('category.destroy', $category->id) }}" method="post" class="d-flex">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('category.edit',$category->id) }}" class="btn btn-sm btn-success">تعديل</a>
-                                    <button type="submit" onclick="confirm('هل ترغب في حذف هذا القسم بالفعل؟')" class="btn btn-sm btn-danger ml-1">حذف</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5" class="text-center">لا توجد اقسام</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>اسم القسم</th>
-                        <th>القسم الرئيسي</th>
-                        <th>عدد المنشورات</th>
-                        <th>الخيارات</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+                    <div class="card-body">
+                        @forelse ($categories as $category)
+                            <div class="d-flex">
+                                <h6>{{ $category->name }}</h6>
+                                <span>28</span>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                            <path
+                                                d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted text-center m-0">لا يوجد أقسام</p>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
+
 @endsection

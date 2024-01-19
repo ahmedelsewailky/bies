@@ -15,7 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         return view('dashboard.categories.index')->with([
-            'categories' => Category::all()
+            'parents' => Category::whereNull('parent_id')->get(),
+            'categories' => Category::whereNotNull('parent_id')->get(),
         ]);
     }
 
