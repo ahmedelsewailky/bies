@@ -35,7 +35,7 @@
                             <label for="name" class="col-md-3 col-form-label">اسم القسم</label>
                             <div class="col-md-9">
                                 <input type="text" id="name" name="name"
-                                    class="form-control @error('name') is-invalid @enderror">
+                                    class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                                 @error('name')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
@@ -43,14 +43,14 @@
                         </div>
 
                         {{-- Parent --}}
-                        <div class="row mb-3" id="parentCategory">
+                        <div class="row mb-3">
                             <label for="name" class="col-md-3 col-form-label">القسم الرئيسي</label>
                             <div class="col-md-9">
                                 <select id="parent_id" name="parent_id"
                                     class="form-control @error('parent_id') is-invalid @enderror">
                                     <option value="" hidden>-- حدد القسم الرئيسي --</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ old('parent_id') == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('parent_id')

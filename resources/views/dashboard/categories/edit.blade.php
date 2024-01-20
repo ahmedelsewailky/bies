@@ -42,60 +42,18 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="parent_id" class="col-md-3 col-form-label">نوع القسم</label>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-12 col-md-3">
-                                        <label for="main" class="form-check-label">
-                                            <input type="radio" name="categoryType" id="main"
-                                                class="form-check-input" {{ !$category->parent_id ? 'checked' : false }}>
-                                            قسم رئيسي
-                                        </label>
-                                    </div>
-                                    <div class="col-12 col-md-3">
-                                        <label for="sub" class="form-check-label">
-                                            <input type="radio" name="categoryType" id="sub"
-                                                class="form-check-input" {{ $category->parent_id ? 'checked' : false }}>
-                                            قسم فرعي
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         {{-- Parent --}}
-                        <div class="row mb-3 show {{ $category->parent_id ? false : 'd-none' }}" id="parentCategory">
-                            <div class="col-md-3"></div>
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-3 col-form-label">القسم الرئيسي</label>
                             <div class="col-md-9">
                                 <select id="parent_id" name="parent_id"
                                     class="form-control @error('parent_id') is-invalid @enderror">
-                                    <option value="">-- حدد القسم الرئيسي --</option>
                                     @foreach ($categories as $cate)
                                         <option value="{{ $cate->id }}" {{ $category->parent_id == $cate->id ? 'selected' : false }}>{{ $cate->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('parent_id')
                                     <p class="invalid-feedback">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- Image --}}
-                        <div class="row mb-3 show {{ !$category->parent_id ? false : 'd-none' }}" id="categoryImage">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-9">
-                                <input type="file" id="icon" name="icon"
-                                    class="form-control @error('icon') is-invalid @enderror">
-                                @error('icon')
-                                    <p class="invalid-feedback">{{ $message }}</p>
-                                @else
-                                    <ul class="mt-3">
-                                        <li>يتم اضافة ايقونة للأقسام الرئيسية فقط.</li>
-                                        <li>الحجم المثالي لأيقونة القسم هي 64 بيكسل</li>
-                                        <li>يمكنك تنزيل ايقونات للأقسام من الرابط التالي: <a href="https://www.flaticon.com/"
-                                                target="_blank" class="text-link">Flaticons</a></li>
-                                    </ul>
                                 @enderror
                             </div>
                         </div>
@@ -112,20 +70,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('js')
-    <script>
-        $(function() {
-            $('input[type="radio"]').click(function() {
-                $('.show').toggleClass("d-none");
-
-                if ($(this).attr('id') == 'main') {
-                    $('#parent_id').val("");
-                } else {
-                    $('#icon').val("");
-                }
-            });
-        });
-    </script>
 @endsection

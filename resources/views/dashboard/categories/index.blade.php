@@ -56,8 +56,12 @@
                                         </svg>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('category.edit', $category->id) }}">Edit</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
+                                        <form action="{{ route('category.destroy', $category->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a class="dropdown-item" href="{{ route('category.edit', $category->id) }}">Edit</a>
+                                            <button type="submit" class="dropdown-item" href="#">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
