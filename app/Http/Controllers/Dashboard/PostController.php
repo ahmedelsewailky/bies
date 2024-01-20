@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
 use App\Models\Category;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -16,16 +17,17 @@ class PostController extends Controller
     public function index()
     {
         return view('dashboard.posts.index')->with([
-            'posts' => Post::all()
+            'posts' => Post::orderByDesc('id')->get(),
+            'parentCategories' => \App\Models\Category::whereNull('parent_id')->get()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Category $category)
+    public function create()
     {
-        return view('dashboard.posts.create', compact('category'));
+        return view('dashboard.posts.create');
     }
 
     /**
@@ -49,6 +51,7 @@ class PostController extends Controller
                 ]);
             }
 
+            // Programs type has not actress
             if ($request->category_id != 2) {
                 foreach ($request->actress as $actor) {
                     DB::table('posts_actresses')->insert([
@@ -58,6 +61,8 @@ class PostController extends Controller
                 }
             }
         }
+
+        Alert::success('تهانينا', 'تم النشر بنجاح');
 
         return redirect()->route('posts.index');
     }
@@ -88,38 +93,7 @@ class PostController extends Controller
     {
         $inputs = $request->except(['_token', 'links', 'actress']);
 
-        $file = storage_path() . $post->image;
-        if (file_exists($file)) {
-            dd('Done');
-        } else {
-            dd($file);
-        }
-
-        // $inputs['image'] = $this->imageHandler($request);
-
-        // $inputs['user_id'] = auth()->user()->id;
-
-        // $post = Post::create($inputs);
-
-        // if ($post) {
-        //     foreach ($request->links as $link) {
-        //         DB::table('posts_links')->insert([
-        //             'post_id' => $post->id,
-        //             'link' => $link
-        //         ]);
-        //     }
-
-        //     if ($request->category_id != 2) {
-        //         foreach ($request->actress as $actor) {
-        //             DB::table('posts_actresses')->insert([
-        //                 'post_id' => $post->id,
-        //                 'actress_id' => $actor
-        //             ]);
-        //         }
-        //     }
-        // }
-
-        // return redirect()->route('posts.index');
+        return $inputs;
     }
 
     /**

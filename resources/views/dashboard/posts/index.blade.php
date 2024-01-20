@@ -34,9 +34,13 @@
                     <div class="col-md-3">
                         <label for="category" class="form-label">القسم</label>
                         <select name="category_id" id="category_id" class="form-control">
-                            <option value="">--اختار--</option>
-                            @foreach (\App\Models\Category::get() as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="" hidden>--اختار--</option>
+                            @foreach ($parentCategories as $parent)
+                                <optgroup label="{{ $parent->name }}">
+                                    @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                         </select>
                     </div>
@@ -58,7 +62,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Posts Table -->
             <table class="table table-bordered table-hover posts-table">
@@ -187,10 +190,10 @@
                       </div>
                     <div class="modal-body py-4">
                         <div class="row">
-                            @foreach (\App\Models\Category::get() as $category)
+                            @foreach ($parentCategories as $category)
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}/category/{{ $category->id }}">
+                                        <a href="{{ route('posts.create') }}?type={{ $category->slug }}">
                                             <img src="{{ asset('dashboard/dist/img/icons/'.$category->name.'.png') }}" alt="Movies icon">
                                             <h6>{{ $category->name }}</h6>
                                         </a>

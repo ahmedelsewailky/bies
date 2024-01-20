@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view('dashboard.categories.create')->with([
-            'categories' => Category::all()
+            'categories' => Category::whereNull('parent_id')->get()
         ]);
     }
 
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('dashboard.categories.edit')->with([
-            'categories' => Category::all(),
+            'categories' => Category::whereNull('parent_id')->get(),
             'category' => $category
         ]);
     }

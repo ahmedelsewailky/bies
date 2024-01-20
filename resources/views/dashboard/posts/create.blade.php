@@ -26,11 +26,11 @@
         <div class="card-header">
             <div class="d-flex align-items-start">
                 @if (request()->has('type'))
-                    @if (request()->get('type') == 'movie')
+                    @if (request()->get('type') == 'aflam')
                         <h6>نموذج إضافة فيلم</h6>
-                    @elseif (request()->get('type') == 'series')
+                    @elseif (request()->get('type') == 'mslslat')
                         <h6>نموذج إضافة مسلسل</h6>
-                    @elseif (request()->get('type') == 'program')
+                    @elseif (request()->get('type') == 'bramg')
                         <h6>نموذج إضافة برنامج</h6>
                     @else
                         <h6>نموذج إضافة بودكاست</h6>
@@ -54,32 +54,32 @@
                             <div class="row type-post-modal">
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type=movie">
-                                            <img src="{{ asset('dashboard/dist/img/icons/cinema.png') }}" alt="Movies icon">
+                                        <a href="{{ route('posts.create') }}?type=aflam">
+                                            <img src="{{ asset('dashboard/dist/img/icons/افلام.png') }}" alt="Movies icon">
                                             <h6>فيلم</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type=series">
-                                            <img src="{{ asset('dashboard/dist/img/icons/series.png') }}" alt="Movies icon">
+                                        <a href="{{ route('posts.create') }}?type=mslslat">
+                                            <img src="{{ asset('dashboard/dist/img/icons/مسلسلات.png') }}" alt="Movies icon">
                                             <h6>مسلسل</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type=program">
-                                            <img src="{{ asset('dashboard/dist/img/icons/coding.png') }}" alt="Movies icon">
+                                        <a href="{{ route('posts.create') }}?type=bramg">
+                                            <img src="{{ asset('dashboard/dist/img/icons/برامج.png') }}" alt="Movies icon">
                                             <h6>برنامج</h6>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type=broadcast">
-                                            <img src="{{ asset('dashboard/dist/img/icons/broadcaster.png') }}"
+                                        <a href="{{ route('posts.create') }}?type=bodkast">
+                                            <img src="{{ asset('dashboard/dist/img/icons/بودكاست.png') }}"
                                                 alt="Movies icon">
                                             <h6>بودكاست</h6>
                                         </a>
