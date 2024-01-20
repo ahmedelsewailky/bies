@@ -44,7 +44,7 @@
                         @forelse (\App\Models\Category::whereParentId($parent->id)->get() as $category)
                             <div class="d-flex">
                                 <h6>{{ $category->name }}</h6>
-                                <span class="ml-2">(28)</span>
+                                <span class="ml-2">({{ $category->posts->count() }})</span>
                                 <div class="dropdown ml-auto">
                                     <button type="button" data-toggle="dropdown"
                                         aria-expanded="false">

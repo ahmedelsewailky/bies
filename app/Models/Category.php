@@ -41,16 +41,12 @@ class Category extends Model
     }
 
     /**
-     * Get the parent name of sub category.
+     * The relation type with posts table.
      *
-     * @param int $parentId
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getParentName($id)
+    public function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        if ($id) {
-            return self::find($id)->name;
-        }
-        return;
+        return $this->hasMany(Post::class);
     }
 }
