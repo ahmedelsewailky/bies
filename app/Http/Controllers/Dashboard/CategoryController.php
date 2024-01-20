@@ -16,7 +16,6 @@ class CategoryController extends Controller
     {
         return view('dashboard.categories.index')->with([
             'parents' => Category::whereNull('parent_id')->get(),
-            'categories' => Category::whereNotNull('parent_id')->get(),
         ]);
     }
 
@@ -35,7 +34,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        return $request;
+        Category::create($request->except('_token'));
+        Alert::success('نجاح', 'تمت الاضافة بنجاح');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -62,8 +63,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-
-        return $request;
+        $category->update($request->except('_token'));
+        Alert::success('نجاح', 'تم حفظ التغيرات');
+        return redirect()->route('category.index');
     }
 
     /**

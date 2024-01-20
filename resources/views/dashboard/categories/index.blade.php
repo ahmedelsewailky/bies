@@ -41,24 +41,23 @@
                     </div>
 
                     <div class="card-body">
-                        @forelse ($categories as $category)
+                        @forelse (\App\Models\Category::whereParentId($parent->id)->get() as $category)
                             <div class="d-flex">
                                 <h6>{{ $category->name }}</h6>
-                                <span>28</span>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                <span class="ml-2">(28)</span>
+                                <div class="dropdown ml-auto">
+                                    <button type="button" data-toggle="dropdown"
                                         aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" style="fill: #798d9c">
                                             <path
                                                 d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                             </path>
                                         </svg>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="{{ route('category.edit', $category->id) }}">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
                                     </div>
                                 </div>
                             </div>

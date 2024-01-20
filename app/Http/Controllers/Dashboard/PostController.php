@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -22,11 +23,9 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('dashboard.posts.create')->with([
-            'posts' => Post::all()
-        ]);
+        return view('dashboard.posts.create', compact('category'));
     }
 
     /**

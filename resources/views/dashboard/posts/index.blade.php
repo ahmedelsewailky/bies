@@ -190,7 +190,7 @@
                             @foreach (\App\Models\Category::get() as $category)
                                 <div class="col-12 col-md-3">
                                     <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type={{ $category->slug }}">
+                                        <a href="{{ route('posts.create') }}/category/{{ $category->id }}">
                                             <img src="{{ asset('dashboard/dist/img/icons/'.$category->name.'.png') }}" alt="Movies icon">
                                             <h6>{{ $category->name }}</h6>
                                         </a>

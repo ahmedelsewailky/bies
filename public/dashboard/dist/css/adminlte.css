@@ -36740,3 +36740,8 @@ a.text-muted:hover {
     text-decoration: underline;
     color: blue
 }
+
+.card .d-flex .dropdown>button {
+    background-color: transparent;
+    border: none;
+}
