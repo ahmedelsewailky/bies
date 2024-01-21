@@ -19,7 +19,10 @@
     <label for="category_id" class="col-md-3 col-form-label">القسم</label>
     <div class="col-md-9">
         <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-            <option value="3">مسلسلات</option>
+            <option value="" hidden>-- اختار --</option>
+            @foreach (\App\Models\Category::whereParentId(3)->get() as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
         </select>
         @error('category_id')
             <p class="invalid-feedback">{{ $message }}</p>

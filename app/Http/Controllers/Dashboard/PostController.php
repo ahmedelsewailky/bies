@@ -35,6 +35,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        return $request;
         $inputs = $request->except(['_token', 'links', 'actress']);
 
         $inputs['image'] = $this->imageHandler($request);
