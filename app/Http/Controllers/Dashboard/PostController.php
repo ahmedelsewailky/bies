@@ -35,7 +35,6 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return $request;
         $inputs = $request->except(['_token', 'links', 'actress']);
 
         $inputs['image'] = $this->imageHandler($request);
@@ -52,8 +51,7 @@ class PostController extends Controller
                 ]);
             }
 
-            // Programs type has not actress
-            if ($request->category_id != 2) {
+            if ($request->actress) {
                 foreach ($request->actress as $actor) {
                     DB::table('posts_actresses')->insert([
                         'post_id' => $post->id,

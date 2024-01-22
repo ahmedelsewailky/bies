@@ -14,14 +14,22 @@
 <div class="row mb-3">
     <label for="category_id" class="col-md-3 col-form-label">القسم</label>
     <div class="col-md-9">
-        <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-            <option value="" hidden>-- اختار --</option>
-            @foreach (\App\Models\Category::whereParentId(1)->get() as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
+        @php
+            $parentId = \App\Models\Category::where('slug', request()->get('type'))->first()->id;
+            $categories = \App\Models\Category::whereParentId($parentId)->get();
+        @endphp
+        @if ($categories->count() > 0)
+            <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                <option value="" hidden>-- اختار --</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        @else
+            <p>لا توجد اقسام فرعية. <a href="{{ route('category.create') }}" class="text-link">اضف قسم فرعي اولا</a></p>
+        @endif
         @error('category_id')
-            <p class="invalid-feedback">{{ $message }}</p>
+            <p class="text-danger">{{ $message }}</p>
         @enderror
     </div>
 </div>
@@ -106,23 +114,11 @@
     <div class="col-md-9">
         <div class="download-link-inputs">
             <input type="text" id="link_1" name="links[]" class="form-control mb-3 @error('links.*') is-invalid @enderror">
-            @error('links.*')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
         </div>
-        <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط آخر</button>
-    </div>
-</div>
-
-{{-- Download Links --}}
-<div class="row mb-3">
-    <label for="watchLink" class="col-md-3 col-form-label">رابط المشاهدة</label>
-    <div class="col-md-9">
-        <input type="text" id="watchLink" name="watch_link"
-            class="form-control mb-3 @error('watch_link') is-invalid @enderror" placeholder="رابط المشاهدة المباشرة">
-        @error('watch_link')
-            <p class="invalid-feedback">{{ $message }}</p>
+        @error('links.*')
+            <p class="text-danger">{{ $message }}</p>
         @enderror
+        <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط آخر</button>
     </div>
 </div>
 

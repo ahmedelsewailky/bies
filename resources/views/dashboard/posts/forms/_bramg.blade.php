@@ -14,12 +14,20 @@
 <div class="row mb-3">
     <label for="category_id" class="col-md-3 col-form-label">القسم</label>
     <div class="col-md-9">
-        <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-            <option value="" hidden>-- اختار --</option>
-            @foreach (\App\Models\Category::whereParentId(2)->get() as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
+        @php
+            $parentId = \App\Models\Category::where('slug', request()->get('type'))->first()->id;
+            $categories = \App\Models\Category::whereParentId($parentId)->get();
+        @endphp
+        @if ($categories->count() > 0)
+            <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                <option value="" hidden>-- اختار --</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        @else
+            <p>لا توجد اقسام فرعية. <a href="{{ route('category.create') }}" class="text-link">اضف قسم فرعي اولا</a></p>
+        @endif
         @error('category_id')
             <p class="invalid-feedback">{{ $message }}</p>
         @enderror
