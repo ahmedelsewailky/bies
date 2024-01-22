@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(User::class);
-            $table->date('year')->nullable();
+            $table->string('year')->nullable();
             $table->string('quality')->nullable();
             $table->text('description')->nullable();
             $table->string('watch_link')->nullable();

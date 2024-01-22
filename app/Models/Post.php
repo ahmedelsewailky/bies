@@ -39,9 +39,7 @@ class Post extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'year' => 'datetime',
-    ];
+    protected $casts = [];
 
     /**
      * Bootstrap the model and its traits.

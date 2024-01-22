@@ -23,24 +23,6 @@
 {{-- Page content --}}
 @section('content')
     <div class="card">
-        {{-- <div class="card-header">
-            <div class="d-flex align-items-start">
-                @if (request()->has('type'))
-                    @if (request()->get('type') == 'movie')
-                        <h6>نموذج إضافة فيلم</h6>
-                    @elseif (request()->get('type') == 'series')
-                        <h6>نموذج إضافة مسلسل</h6>
-                    @elseif (request()->get('type') == 'program')
-                        <h6>نموذج إضافة برنامج</h6>
-                    @else
-                        <h6>نموذج إضافة بودكاست</h6>
-                    @endif
-                    <a href="{{ route('posts.create') }}" title="اضف نوع اخر">
-                        <i class="fa fa-arrow-right ml-3"></i>
-                    </a>
-                @endif
-            </div>
-        </div> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col-md-7">
@@ -57,8 +39,8 @@
                             </div>
                             <div class="flex-grow-1">
                                 <p class="mb-0">
-                                    يرجي العلم أنه لا يمكنك تغيير عنوان المقال او القسم الخاص بها لأن ذلك سوف يؤثر في عملية
-                                    أرشفة المقال، ولعمل ذلك
+                                     لا يمكنك تغيير عنوان المقال لأن ذلك سوف يؤثر في عملية
+                                    الأرشفة ، ولعمل ذلك
                                     <strong class="text-orange">قم بحذف المقال وإنشاءه من جديد</strong>
                                 </p>
                             </div>
@@ -82,6 +64,116 @@
                                 <p class="mb-0">{{ $post->category->name }}</p>
                             </div>
                         </div>
+
+                        {{-- Year --}}
+                        <div class="row mb-3">
+                            <label for="year" class="col-md-3 col-form-label">سنة الإنتاج</label>
+                            <div class="col-md-9">
+                                <select id="year" name="year"
+                                    class="form-control @error('year') is-invalid @enderror">
+                                    <option value="">--اختار--</option>
+                                    @for ($i = date('Y'); $i >= 1900; $i--)
+                                        <option value="{{ $i }}" {{ $post->year == $i ? 'selected' : false }}>
+                                            {{ $i }}
+                                        </option>
+                                    @endfor
+                                </select>
+                                @error('year')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Quality --}}
+                        <div class="row mb-3">
+                            <label for="quality" class="col-md-3 col-form-label">الجودة</label>
+                            <div class="col-md-9">
+                                <select id="quality" name="quality"
+                                    class="form-control @error('quality') is-invalid @enderror">
+                                    <option value="">--اختار--</option>
+                                    @foreach (DataArray::QUALITIES as $key => $value)
+                                        <option value="{{ $key }}"
+                                            {{ $post->quality == $key ? 'selected' : false }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                                @error('quality')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Description --}}
+                        <div class="row mb-3">
+                            <label for="description" class="col-md-3 col-form-label">وصف مختصر</label>
+                            <div class="col-md-9">
+                                <textarea name="description" maxlength="500" id="description" cols="30" rows="5" class="form-control">{{ $post->description }}</textarea>
+                                @error('description')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Image --}}
+                        <div class="row mb-3">
+                            <label for="image" class="col-md-3 col-form-label">الصورة التوضيحية</label>
+                            <div class="col-md-9">
+                                <input type="file" id="image" name="image"
+                                    class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Actress --}}
+                        <div class="row mb-3">
+                            <label for="actress" class="col-md-3 col-form-label">الممثلين</label>
+                            <div class="col-md-9">
+                                <select id="actress" name="actress[]"
+                                    class="form-control select2 @error('actress') is-invalid @enderror" multiple>
+                                    <option value="">--اختار--</option>
+                                    @foreach (\App\Models\Actress::get() as $actress)
+                                        <option value="{{ $actress->id }}"
+                                            {{ old('actress') == $actress->id ? 'selected' : false }}>
+                                            {{ $actress->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('actress')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- Download Links --}}
+                        <div class="row mb-3">
+                            <label for="link_1" class="col-md-3 col-form-label">روابط التحميل</label>
+                            <div class="col-md-9">
+                                <div class="download-link-inputs">
+                                    <input type="text" id="link_1" name="links[]"
+                                        class="form-control mb-3 @error('links.*') is-invalid @enderror">
+                                </div>
+                                @error('links.*')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط
+                                    آخر</button>
+                            </div>
+                        </div>
+
+                        {{-- Submit --}}
+                        <div class="row border-top pt-3 mt-3">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <button type="submit" class="btn btn-primary">حفظ ونشر</button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
                     </form>
                 </div>
             </div>

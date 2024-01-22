@@ -79,10 +79,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit')->with([
-            'posts' => Post::all(),
-            'post' => $post
-        ]);
+        return view('dashboard.posts.edit', compact('post'));
     }
 
     /**
