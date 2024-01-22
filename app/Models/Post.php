@@ -22,7 +22,8 @@ class Post extends Model
         'year',
         'image',
         'description',
-        'quality'
+        'quality',
+        'views'
     ];
 
     /**
@@ -75,4 +76,5 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 }

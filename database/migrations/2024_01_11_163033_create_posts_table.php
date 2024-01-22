@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('year')->nullable();
             $table->string('quality')->nullable();
             $table->text('description')->nullable();
-            $table->string('watch_link')->nullable();
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('views')->nullable();
             $table->timestamps();
         });
     }

@@ -35,7 +35,7 @@
                         <label for="category" class="form-label">القسم</label>
                         <select name="category_id" id="category_id" class="form-control">
                             <option value="" hidden>--اختار--</option>
-                            @foreach ($parentCategories as $parent)
+                            @foreach (\App\Models\Category::whereNull('parent_id')->get() as $parent)
                                 <optgroup label="{{ $parent->name }}">
                                     @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -81,8 +81,12 @@
                             <td>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 mr-3">
-                                        <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80"
-                                            class="rounded-lg" alt="poster">
+                                        @if (file_exists(public_path() . '/storage/' . $post->image))
+                                            <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80"
+                                                class="rounded-lg" alt="poster">
+                                        @else
+                                            <img src="{{ $post->image }}" width="120" height="80" class="rounded-lg" alt="poster">
+                                        @endif
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6><a href="">{{ $post->title }}</a></h6>
@@ -140,7 +144,7 @@
                                         d="M20 7h-4V4c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H4c-1.103 0-2 .897-2 2v9a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V9c0-1.103-.897-2-2-2zM4 11h4v8H4v-8zm6-1V4h4v15h-4v-9zm10 9h-4V9h4v10z">
                                     </path>
                                 </svg>
-                                {{ number_format(89856) }} مشاهدة
+                                {{ number_format($post->views) }}
                             </td>
                             <td>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -148,7 +152,7 @@
                                     <path d="m12 16 4-5h-3V4h-2v7H8z"></path>
                                     <path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path>
                                 </svg>
-                                {{ number_format(852147) }} تحميل
+                                0
                             </td>
                             <td>
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="post" class="d-flex">
@@ -176,34 +180,6 @@
                     </tr>
                 </thead>
             </table>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade type-post-modal" id="typeOfPostModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">حدد الفئة المراد اضافتها</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                    <div class="modal-body py-4">
-                        <div class="row">
-                            @foreach ($parentCategories as $category)
-                                <div class="col-12 col-md-3">
-                                    <div class="thumbnail">
-                                        <a href="{{ route('posts.create') }}?type={{ $category->slug }}">
-                                            <img src="{{ asset('dashboard/dist/img/icons/'.$category->name.'.png') }}" alt="Movies icon">
-                                            <h6>{{ $category->name }}</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

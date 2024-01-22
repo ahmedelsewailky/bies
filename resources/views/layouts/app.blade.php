@@ -52,6 +52,35 @@
             </section>
             <!-- /.content -->
         </div>
+
+        <!-- Modal for choose the type of post want to create from sidebar or any where -->
+        <div class="modal fade type-post-modal" id="typeOfPostModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">حدد الفئة المراد اضافتها</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <div class="modal-body py-4">
+                        <div class="row">
+                            @foreach (\App\Models\Category::whereNull('parent_id')->get() as $category)
+                                <div class="col-12 col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="{{ route('posts.create') }}?type={{ $category->slug }}">
+                                            <img src="{{ asset('dashboard/dist/img/icons/'.$category->name.'.png') }}" alt="Movies icon">
+                                            <h6>{{ $category->name }}</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- /.content-wrapper -->
         @include('dashboard.partials.footer')
     </div>

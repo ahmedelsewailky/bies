@@ -22,7 +22,7 @@
             <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                 <option value="" hidden>-- اختار --</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
                 @endforeach
             </select>
         @else
@@ -79,10 +79,10 @@
     <div class="col-md-9">
         <div class="download-link-inputs">
             <input type="text" id="link_1" name="links[]" class="form-control mb-3 @error('links.*') is-invalid @enderror">
-            @error('links.*')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
         </div>
+        @error('links.*')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
         <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط آخر</button>
     </div>
 </div>

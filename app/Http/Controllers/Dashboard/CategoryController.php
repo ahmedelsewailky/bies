@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         Category::create($request->except('_token'));
         Alert::success('نجاح', 'تمت الاضافة بنجاح');
-        return redirect()->route('category.index');
+        return back();
     }
 
     /**
@@ -65,7 +65,7 @@ class CategoryController extends Controller
     {
         $category->update($request->except('_token'));
         Alert::success('نجاح', 'تم حفظ التغيرات');
-        return redirect()->route('category.index');
+        return back();
     }
 
     /**

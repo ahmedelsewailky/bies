@@ -18,7 +18,6 @@ class PostController extends Controller
     {
         return view('dashboard.posts.index')->with([
             'posts' => Post::orderByDesc('id')->get(),
-            'parentCategories' => \App\Models\Category::whereNull('parent_id')->get()
         ]);
     }
 
@@ -37,7 +36,7 @@ class PostController extends Controller
     {
         $inputs = $request->except(['_token', 'links', 'actress']);
 
-        $inputs['image'] = $this->imageHandler($request);
+        $inputs['image'] = $request->image->store('posts', 'public');;
 
         $inputs['user_id'] = auth()->user()->id;
 
@@ -53,7 +52,7 @@ class PostController extends Controller
 
             if ($request->actress) {
                 foreach ($request->actress as $actor) {
-                    DB::table('posts_actresses')->insert([
+                    DB::table('post_actress')->insert([
                         'post_id' => $post->id,
                         'actress_id' => $actor
                     ]);
@@ -79,7 +78,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', compact('post'));
+        $post_actresses = DB::table('post_actress')->where('post_id', $post->id)->pluck('actress_id', 'actress_id')->toArray();
+        $post_links = DB::table('posts_links')->where('post_id', $post->id)->get();
+        return view('dashboard.posts.edit', get_defined_vars());
     }
 
     /**
@@ -89,7 +90,54 @@ class PostController extends Controller
     {
         $inputs = $request->except(['_token', 'links', 'actress']);
 
-        return $inputs;
+        if ($request->image) {
+            $image_path = storage_path('app\public\\') . $post->image;
+            if (file_exists($image_path))
+                unlink($image_path);
+            $inputs['image'] = $request->image->store('posts', 'public');
+        } else {
+            $inputs['image'] = $post->image;
+        }
+
+        $inputs['user_id'] = auth()->user()->id;
+
+        $post->update($inputs);
+
+        if ($post) {
+            $links = DB::table('posts_links')->where('post_id', $post->id)->get();
+
+            foreach ($links as $link) {
+                DB::table('posts_links')->where('post_id', $post->id)->delete();
+            }
+
+            foreach ($request->links as $link) {
+                if ($link != null) {
+                    DB::table('posts_links')->insert([
+                        'post_id' => $post->id,
+                        'link' => $link
+                    ]);
+                }
+            }
+
+            if ($request->actress) {
+                $actress = DB::table('post_actress')->where('post_id', $post->id)->get();
+
+                foreach ($actress as $actor) {
+                    DB::table('post_actress')->where('post_id', $post->id)->delete();
+                }
+
+                foreach ($request->actress as $actor) {
+                    DB::table('post_actress')->insert([
+                        'post_id' => $post->id,
+                        'actress_id' => $actor
+                    ]);
+                }
+            }
+        }
+
+        Alert::success('تهانينا', 'تم النشر بنجاح');
+
+        return back();
     }
 
     /**
@@ -99,25 +147,5 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index');
-    }
-
-    /**
-     * Handling posts image
-     *
-     * @param $request
-     */
-    private function imageHandler($request)
-    {
-        if ($request->category_id == 1) {
-            $folder = 'movie';
-        } elseif($request->category_id == 2) {
-            $folder = 'program';
-        } elseif ($request->category_id == 3) {
-            $folder = 'series';
-        } else {
-            $folder = 'broadcast';
-        }
-
-        return $request->image->store($folder, 'public');
     }
 }

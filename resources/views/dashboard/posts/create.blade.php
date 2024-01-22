@@ -10,14 +10,14 @@
         <h1 class="m-0 text-dark">
             إضافة منشور جديد
         </h1>
-    </div><!-- /.col -->
+    </div><!-- ./col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">الرئيسية</a></li>
             <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">المنشورات</a></li>
             <li class="breadcrumb-item active">إضافة منشور جديد</li>
         </ol>
-    </div><!-- /.col -->
+    </div><!-- ./col -->
 @endsection
 
 {{-- Page content --}}

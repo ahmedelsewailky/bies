@@ -40,13 +40,28 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('posts.index') }}" class="nav-link {{ request()->routeIs('posts.*') ? 'active' : false }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('posts.*') ? 'menu-open' : false }}">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             المنشورات
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('posts.index') }}" class="nav-link {{ request()->routeIs('posts.index') ? 'active' : false }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>قائمة المنشورات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#typeOfPostModal" class="nav-link {{ request()->routeIs('posts.create') ? 'active' : false }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>اضافة منشور</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item has-treeview">
