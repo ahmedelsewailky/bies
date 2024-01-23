@@ -6,7 +6,6 @@ use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
-use App\Models\Category;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
@@ -16,9 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.index')->with([
-            'posts' => Post::orderByDesc('id')->get(),
-        ]);
+        $posts = new Post;
+        $posts = request()->has('category_id') && request()->get('category_id') != '' ? $posts->whereCategoryId(request()->get('category')) : $posts;
+        $posts = $posts->orderByDesc('id')->get();
+        return view('dashboard.posts.index', compact('posts'));
     }
 
     /**
@@ -147,5 +147,10 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index');
+    }
+
+    public function filter()
+    {
+
     }
 }

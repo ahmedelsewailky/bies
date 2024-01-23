@@ -1,7 +1,3 @@
-<h6>
-
-</h6>
-
 {{-- Name --}}
 <div class="row mb-3">
     <label for="title" class="col-md-3 col-form-label">العنوان</label>
@@ -26,7 +22,7 @@
             <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                 <option value="" hidden>-- اختار --</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
                 @endforeach
             </select>
         @else
@@ -36,6 +32,7 @@
             <p class="invalid-feedback">{{ $message }}</p>
         @enderror
     </div>
+</div>
 
 {{-- Quality --}}
 <div class="row mb-3">
@@ -105,18 +102,6 @@
             @enderror
         </div>
         <button type="button" id="add" class="btn btn-sm btn-default mt-3">اضف رابط آخر</button>
-    </div>
-</div>
-
-{{-- Download Links --}}
-<div class="row mb-3">
-    <label for="watchLink" class="col-md-3 col-form-label">رابط المشاهدة</label>
-    <div class="col-md-9">
-        <input type="text" id="watchLink" name="watch_link"
-            class="form-control mb-3 @error('watch_link') is-invalid @enderror" placeholder="رابط المشاهدة المباشرة">
-        @error('watch_link')
-            <p class="invalid-feedback">{{ $message }}</p>
-        @enderror
     </div>
 </div>
 

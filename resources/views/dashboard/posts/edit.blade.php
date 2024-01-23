@@ -189,13 +189,7 @@
 
                             <tr>
                                 <td class="p-4" colspan="2">
-                                    @if (file_exists(public_path() . '/storage/' . $post->image))
-                                        <img src="{{ asset('storage\\') . $post->image }}" class="rounded-lg w-100"
-                                            alt="poster">
-                                    @else
-                                        <img src="{{ $post->image }}" width="120" height="80" class="rounded-lg"
-                                            alt="poster">
-                                    @endif
+                                    <img src="{{ asset('storage\\') . $post->image }}" class="rounded-lg w-100" alt="poster">
                                 </td>
                             </tr>
 

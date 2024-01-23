@@ -23,44 +23,52 @@
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between">
                 <h6 class="mb-0"><i class="fa fa-list mr-2"></i> جدول المنشورات</h6>
-                <a href="#" data-toggle="modal" data-target="#typeOfPostModal" class="btn btn-outline-primary">إضافة مشور جديد</a>
+                <a href="#" data-toggle="modal" data-target="#typeOfPostModal" class="btn btn-outline-primary">إضافة
+                    مشور جديد</a>
             </div>
         </div>
         <div class="card-body">
             <!-- Filter -->
             <div class="border p-4 mb-3">
                 <h6 class="font-weight-bold">فلاتر العرض</h6>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="category" class="form-label">القسم</label>
-                        <select name="category_id" id="category_id" class="form-control">
-                            <option value="" hidden>--اختار--</option>
-                            @foreach (\App\Models\Category::whereNull('parent_id')->get() as $parent)
-                                <optgroup label="{{ $parent->name }}">
-                                    @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </optgroup>
-                            @endforeach
-                        </select>
+                <form action="?" method="get">
+                    <div class="row">
+                        <!-- Categories -->
+                        <div class="col-md-3">
+                            <label for="category" class="form-label">القسم</label>
+                            <select name="category" id="category" class="form-control">
+                                <option value="" hidden>--اختار--</option>
+                                @foreach (\App\Models\Category::whereNull('parent_id')->get() as $parent)
+                                    <optgroup label="{{ $parent->name }}">
+                                        @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
+                                            <option value="{{ $category->id }}" {{ request()->get('category') == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Search Form -->
+                        <div class="col-md-3">
+                            <label for="search" class="form-label">بحث</label>
+                            <input type="search" name="search" id="search" class="form-control"
+                                placeholder="ابحث عن عنوان ما">
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="col-md-3 offset-3 align-self-end text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                    style="fill: #FFF">
+                                    <path
+                                        d="M21 3H5a1 1 0 0 0-1 1v2.59c0 .523.213 1.037.583 1.407L10 13.414V21a1.001 1.001 0 0 0 1.447.895l4-2c.339-.17.553-.516.553-.895v-5.586l5.417-5.417c.37-.37.583-.884.583-1.407V4a1 1 0 0 0-1-1zm-6.707 9.293A.996.996 0 0 0 14 13v5.382l-2 1V13a.996.996 0 0 0-.293-.707L6 6.59V5h14.001l.002 1.583-5.71 5.71z">
+                                    </path>
+                                </svg>
+                                عرض النتائج
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <label for="search" class="form-label">بحث</label>
-                        <input type="search" name="search" id="search" class="form-control"
-                            placeholder="ابحث عن عنوان ما">
-                    </div>
-                    <div class="col-md-3 offset-3 align-self-end text-right">
-                        <button type="submit" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                style="fill: #FFF">
-                                <path
-                                    d="M21 3H5a1 1 0 0 0-1 1v2.59c0 .523.213 1.037.583 1.407L10 13.414V21a1.001 1.001 0 0 0 1.447.895l4-2c.339-.17.553-.516.553-.895v-5.586l5.417-5.417c.37-.37.583-.884.583-1.407V4a1 1 0 0 0-1-1zm-6.707 9.293A.996.996 0 0 0 14 13v5.382l-2 1V13a.996.996 0 0 0-.293-.707L6 6.59V5h14.001l.002 1.583-5.71 5.71z">
-                                </path>
-                            </svg>
-                            عرض النتائج
-                        </button>
-                    </div>
-                </div>
+                </form>
             </div>
 
             <!-- Posts Table -->
@@ -81,12 +89,8 @@
                             <td>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 mr-3">
-                                        @if (file_exists(public_path() . '/storage/' . $post->image))
-                                            <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80"
-                                                class="rounded-lg" alt="poster">
-                                        @else
-                                            <img src="{{ $post->image }}" width="120" height="80" class="rounded-lg" alt="poster">
-                                        @endif
+                                        <img src="{{ asset('storage\\') . $post->image }}" width="120" height="80"
+                                            class="rounded-lg" alt="poster">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6><a href="">{{ $post->title }}</a></h6>
