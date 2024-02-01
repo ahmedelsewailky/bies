@@ -66,6 +66,10 @@
                                 </svg>
                                 عرض النتائج
                             </button>
+
+                            @if (request()->has('category'))
+                                <a href="{{ route('posts.index') }}" class="btn btn-danger">حذف الفلاتر</a>
+                            @endif
                         </div>
                     </div>
                 </form>

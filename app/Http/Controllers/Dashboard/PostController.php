@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = new Post;
-        $posts = request()->has('category_id') && request()->get('category_id') != '' ? $posts->whereCategoryId(request()->get('category')) : $posts;
+        $posts = request()->has('category') && request()->get('category') != '' ? $posts->whereCategoryId(request()->get('category')) : $posts;
         $posts = $posts->orderByDesc('id')->get();
         return view('dashboard.posts.index', compact('posts'));
     }
