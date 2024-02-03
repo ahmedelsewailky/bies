@@ -1,0 +1,29 @@
+.app-header {
+    form {
+        .form-control {
+            background-color: transparent;
+            border: 1px solid #5547e6;
+            border-radius: 1rem;
+            color: white;
+            width: 250px;
+
+            &::placeholder {
+                color: white;
+            }
+        }
+
+        button {
+            position: absolute;
+            background: transparent;
+            border: none;
+            color: white;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+        }
+    }
+
+    img {
+        border-radius: 100%;
+    }
+}

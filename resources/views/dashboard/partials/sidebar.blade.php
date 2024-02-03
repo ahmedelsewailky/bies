@@ -32,6 +32,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('website') }}" class="nav-link" target="_blank">
+                        <i class="nav-icon fas fa-tv"></i>
+                        <p>
+                            الموقع
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.*') ? 'active' : false }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>

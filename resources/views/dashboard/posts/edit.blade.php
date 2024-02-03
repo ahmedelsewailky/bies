@@ -37,11 +37,9 @@
                                     </path>
                                 </svg>
                             </div>
-                            <div class="flex-grow-1">
+                            <div class="flex-grow-1 align-self-center">
                                 <p class="mb-0">
-                                    لا يمكنك تغيير عنوان المقال لأن ذلك سوف يؤثر في عملية
-                                    الأرشفة ، ولعمل ذلك
-                                    <strong class="text-orange">قم بحذف المقال وإنشاءه من جديد</strong>
+                                    يرحي العلم بأنه عند تغيير اسم المنشور سوف يؤثر علي أرشفته بمحركات البحث
                                 </p>
                             </div>
                         </div>
@@ -53,16 +51,31 @@
                         {{-- Name --}}
                         <div class="row mb-3">
                             <label for="title" class="col-md-3 col-form-label">عنوان المنشور</label>
-                            <div class="col-md-9 align-self-center">
-                                <p class="mb-0">{{ $post->title }}</p>
+                            <div class="col-md-9">
+                                <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror"
+                                    value="{{ $post->title ?? old('title') }}">
+                                @error('title')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
                         {{-- Category --}}
                         <div class="row mb-3">
                             <label for="category_id" class="col-md-3 col-form-label">القسم</label>
-                            <div class="col-md-9 align-self-center">
-                                <p class="mb-0">{{ $post->category->name }}</p>
+                            <div class="col-md-9">
+                                <select name="category_id" id="category_id" class="form-control">
+                                    @foreach (\App\Models\Category::whereNull('parent_id')->get() as $parent)
+                                        <optgroup label="{{ $parent->name }}">
+                                            @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
+                                                <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 

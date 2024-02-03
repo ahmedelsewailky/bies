@@ -1,0 +1,54 @@
+
+
+span.play-icon {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    transition: 0.3s;
+    font-size: 2rem;
+    border: 0px solid #ff507d;
+    width: 50px;
+    height: 50px;
+    line-height: 62px;
+    border-radius: 100%;
+    opacity: 0;
+    overflow: hidden;
+    text-align: center;
+    z-index: 9;
+    background-color: #ff507d;
+    color: #fff;
+
+    &::after,
+    &::before {
+        position: absolute;
+        content: "";
+        width: 50px;
+        height: 50px;
+        background-color: #ff507d;
+        left: 0;
+        border-radius: 50%;
+        opacity: 0.7;
+    }
+
+    &::before {
+        animation: pulse 2s ease-out infinite;
+    }
+
+    &::after {
+        animation: pulse 2s 1s ease-out infinite;
+    }
+}
+
+@keyframes pulse {
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+span.play-icon .bx {
+    font-size: inherit;
+    height: 100%;
+    margin-left: 5px;
+}

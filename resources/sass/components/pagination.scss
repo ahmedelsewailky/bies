@@ -1,0 +1,33 @@
+.page-link,
+.page-link:hover {
+    background-color: #2d314d;
+    border: none;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    margin: 0 0.25rem;
+    line-height: 2.25;
+    text-align: center;
+}
+
+a.page-link:hover {
+    background-color: #61668b;
+}
+
+.page-link.active,
+.active > .page-link {
+    z-index: 3;
+    color: var(--bs-pagination-active-color);
+    background-color: #ff507d;
+    border-color: transparent;
+}
+
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    border-radius: 22px !important;
+    width: 100px;
+    background-color: #2d314d;
+    color: white;
+}

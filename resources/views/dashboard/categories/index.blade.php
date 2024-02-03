@@ -42,7 +42,7 @@
 
                     <div class="card-body">
                         @forelse (\App\Models\Category::whereParentId($parent->id)->get() as $category)
-                            <div class="d-flex">
+                            <div class="d-flex py-2">
                                 <h6>{{ $category->name }}</h6>
                                 <span class="ml-2">({{ $category->posts->count() }})</span>
                                 <div class="dropdown ml-auto">

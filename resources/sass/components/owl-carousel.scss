@@ -1,0 +1,25 @@
+
+.owl-nav {
+    margin-top: 1rem;
+
+    button {
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        margin-left: 0.25rem;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        line-height: 5px !important;
+        border-radius: 5px;
+        border: 1px solid #2d314d !important;
+        color: #53566a !important;
+
+        span {
+            font-size: inherit;
+        }
+
+        &:hover {
+            background-color: #1f2239 !important;
+        }
+    }
+}

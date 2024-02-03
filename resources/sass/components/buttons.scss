@@ -1,0 +1,46 @@
+.btn {
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    line-height: 30px;
+    transition: 0.3s;
+    font-size: inherit;
+
+    .bx {
+        margin-left: .5rem;
+        font-size: 1.25rem;
+    }
+}
+
+.btn-primary {
+    border-color: #4F46E5;
+    background: linear-gradient(45deg, #4F46E5, #A855F7);
+
+    &:hover {
+        box-shadow: 0px 0px 20px 4px #4f46e5;
+        border-color: #A855F7;
+        background: linear-gradient(45deg, #A855F7, #4F46E5);
+    }
+}
+
+.btn-success {
+    border-color: #A3E635;
+    background: linear-gradient(45deg, #A3E635, #059669);
+
+    &:hover {
+        box-shadow: 0px 0px 20px 4px #A3E635;
+        border-color: #059669;
+        background: linear-gradient(45deg, #059669, #A3E635);
+    }
+}
+
+.btn-danger {
+    border-color: #EF4444;
+    background: linear-gradient(45deg, #EF4444, #D946EF);
+
+    &:hover {
+        box-shadow: 0px 0px 20px 4px #EF4444;
+        border-color: #D946EF;
+        background: linear-gradient(45deg, #D946EF, #EF4444);
+    }
+}

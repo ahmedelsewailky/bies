@@ -1,0 +1,104 @@
+.login-wrap-inner {
+    background: url("../../public/assets/images/background-1.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+
+    form.auth-login-form {
+        position: absolute;
+        width: 25%;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+
+        @media screen and (max-width: 992px) {
+            & {
+                width: 85%;
+                backdrop-filter: blur(4px);
+                -moz-backdrop-filter: blur(4px);
+                -o-backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+        }
+    }
+}
+
+.register-wrap-inner {
+    background: url("../../public/assets/images/background-2.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    animation: position 30s infinite ease;
+
+    .form-area {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(-115deg, #00031c 40%, transparent);
+        position: relative;
+
+        form {
+            width: 25%;
+            position: absolute;
+            top: 50%;
+            right: 28%;
+            transform: translate(50%, -50%);
+        }
+    }
+}
+
+
+@keyframes position {
+    0% {
+        background-position: 0;
+    }
+    50% {
+        background-position: -350px;
+    }
+    100% {
+        background-position: 0;
+    }
+}
+
+.reset-password-wrap-inner {
+    background: url("../../public/assets/images/background-3.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .form-area {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(-115deg, #00031c 40%, transparent);
+        position: relative;
+
+        form {
+            width: 25%;
+            position: absolute;
+            top: 50%;
+            right: 28%;
+            transform: translate(50%, -50%);
+        }
+    }
+}
+
+.auth-form {
+    .form-control {
+        background-color: transparent;
+        color: white;
+        border-color: #837685;
+        border-radius: 0.35rem;
+        line-height: 2rem;
+
+        &::placeholder {
+            color: #616061;
+        }
+    }
+}

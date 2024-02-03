@@ -1,0 +1,69 @@
+.app-sidebar {
+    background-color: #2d314d;
+    border-radius: 1rem;
+    color: white;
+    padding: 1rem;
+
+    .nav-link {
+        color: inherit;
+        font-size: inherit;
+    }
+}
+
+// Minimal Sidebar
+.app-minimal-sidebar {
+    text-align: center;
+    font-size: 24px;
+    width: 100px;
+
+    ul {
+        padding: 0;
+        align-items: center;
+        height: 100%;
+    }
+
+    .nav-link {
+        width: 60px;
+        background-color: #3d4161;
+        margin-bottom: 1rem;
+        height: 60px;
+        border-radius: .5rem;
+        line-height: 40px;
+    }
+
+    .bx {
+        font-size: inherit;
+    }
+}
+
+// Static Sidebar
+.app-static-sidebar {
+    background-color: transparent;
+    width: 310px;
+    border-radius: 1rem;
+    margin-right: auto;
+    border: 3px solid #7f4fef;
+    padding: 1.5rem;
+}
+
+.static-item {
+    text-align: center;
+
+    span:nth-child(1) {
+        border: 2px solid #6747e6;
+        padding: .55rem .75rem;
+        border-radius: .5rem;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    span:nth-child(2) {
+        font-size: 11px;
+        text-align: center;
+    }
+}
+
+.app-sidebar .border {
+    border: 2px solid #505aa9 !important;
+}

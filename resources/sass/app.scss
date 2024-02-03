@@ -1,8 +1,43 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+
+@import "boxicons/css/boxicons.min.css";
+
+body {
+    color: #e2e3e6;
+    font-size: 0.875rem;
+    background-color: #00031c;
+    font-family: "Tajawal", sans-serif;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.bx {
+    vertical-align: middle;
+    font-size: 1rem;
+}
+
+@import "./partials/navbar.scss";
+
+@import "./partials/slider.scss";
+
+@import './partials/footer.scss';
+
+@import "./components/section.scss";
+
+@import "./components/buttons.scss";
+
+@import "./components/form.scss";
+
+@import './components/owl-carousel.scss';
+
+@import './components/post.scss';
+
+@import './components/pagination.scss';
+
+@import './login.scss';
