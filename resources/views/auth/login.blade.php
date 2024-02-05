@@ -11,7 +11,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('website') }}">
-                    <img src="{{ asset('logo.png') }}" alt="{{ env('APP_NAME') }}">
+                    Marvel
                 </a>
             </div>
         </nav>

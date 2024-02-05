@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="{{ route('website') }}">
-            <img src="{{ asset('logo.png') }}" alt="{{ env('APP_NAME') }}">
+            Marvel
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigationMenu"
             aria-controls="mainNavigationMenu" aria-expanded="false" aria-label="Toggle navigation">
