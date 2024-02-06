@@ -255,6 +255,7 @@ a:hover {
     font-weight: 600;
     margin: 0;
 }
+
 .section-header h6::before {
     content: "";
     display: inline-block;
@@ -273,7 +274,6 @@ a:hover {
     border: 3px solid #2d314d;
     padding: 0.5rem 0.75rem;
     border-radius: 25px;
-    width: 110px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -282,6 +282,7 @@ a:hover {
     transition: 0.3s ease-out;
     margin-bottom: 0.5rem;
 }
+
 .section-content-filter a::before {
     content: "";
     position: absolute;
@@ -390,14 +391,14 @@ label.form-label {
     transition: 0.3s;
 }
 
-.owl-item .post {
+.section .post {
     height: 330px;
     border-radius: 1.25rem;
     position: relative;
     overflow: hidden;
 }
 
-.owl-item .post-thumb {
+.section .post-thumb {
     height: 100%;
     background-position: center center;
     background-size: cover;
@@ -427,11 +428,6 @@ span.quality {
     font-weight: 600;
     z-index: 1;
     transform: rotate(-45deg);
-}
-.post-thumb img {
-    width: 100%;
-    object-fit: fill;
-    transition: 0.3s;
 }
 h6.post-title {
     font-size: 1rem;
