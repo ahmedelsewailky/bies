@@ -389,6 +389,22 @@ label.form-label {
     width: 100%;
     transition: 0.3s;
 }
+
+.owl-item .post {
+    height: 330px;
+    border-radius: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.owl-item .post-thumb {
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 0.3s;
+}
+
 @media screen and (max-width: 992px) {
     .post-content {
         bottom: 0;
@@ -397,11 +413,6 @@ label.form-label {
 }
 .post-content p {
     margin: 0;
-}
-.post-thumb {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
 }
 span.quality {
     position: absolute;
@@ -450,7 +461,7 @@ h6.post-title {
     overflow: visible;
     z-index: 1;
 }
-.post:hover img {
+.post:hover .post-thumb {
     transform: scale(1.2);
     filter: grayscale(1) blur(2px);
 }

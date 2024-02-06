@@ -10,178 +10,34 @@
         <div class="container">
             <div class="section-header">
                 <h6>جديد الأفلام</h6>
-                <a href="#" class="me-auto"> مشاهدة المزيد <i class='bx bx-left-arrow-alt'></i> </a>
+                <a href="#" class="ms-auto"> مشاهدة المزيد <i class='bx bx-left-arrow-alt'></i> </a>
             </div>
 
             <div class="section-body">
                 <div class="section-content-filter">
-                    <a href="#">افلام عربي</a>
-                    <a href="#">افلام اجنبي</a>
-                    <a href="#">افلام إنمي</a>
-                    <a href="#">افلام تركي</a>
-                    <a href="#">افلام هندي</a>
+                    @foreach ($movies as $name => $id)
+                        <a href="{{ $id }}">{{ $name }}</a>
+                    @endforeach
                 </div>
 
                 <div class="owl-carousel">
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
+                    @forelse ($posts->whereIn('category_id', $movies)->take(10)->get() as $post)
+                        <div class="post">
+                            <span class="quality">WEB-DL</span>
+                            <div class="post-thumb" style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                            </div>
                             <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
+                            <div class="post-content">
+                                <div class="post-meta meta-category">{{ $post->category->name }}</div>
+                                <h6 class="post-title">
+                                    <a href="#">{{ $post->title }}</a>
+                                </h6>
+                                <p>{{ str($post->description)->words(10) }}</p>
+                            </div>
                         </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
-                    <div class="post">
-                        <span class="quality">WEB-DL</span>
-                        <div class="post-thumb">
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <img src="https://via.placeholder.com/288x400"
-                                alt="تحميل ومشاهدة فيلم لا تراجع ولا استسلام">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta meta-category">افلام عربية</div>
-                            <h6 class="post-title">
-                                <a href="#">فيلم لا تراجع ولا إستسلام 2018</a>
-                            </h6>
-
-                            <p>تحميل ومشاهدة فيلم لا تراجع ولا استسلام</p>
-                        </div>
-                    </div>
+                    @empty
+                        <p class="text-center">لا يوجود منشورات</p>
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -11,6 +13,8 @@ class WebsiteController extends Controller
      */
     public function __invoke()
     {
-        return view('website.index');
+        $posts = new Post;
+        $movies =  Category::whereParentId(1)->select('id', 'name')->pluck('id', 'name');
+        return view('website.index', get_defined_vars());
     }
 }
