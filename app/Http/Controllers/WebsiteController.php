@@ -16,7 +16,7 @@ class WebsiteController extends Controller
         $posts = new Post;
         $movies =  Category::whereParentId(1)->select('id', 'name')->pluck('id', 'name');
         $series =  Category::whereParentId(3)->select('id', 'name')->pluck('id', 'name');
-        $latest = Post::get();
+        $latest = Post::orderByDesc('id')->paginate(12);
         return view('website.index', get_defined_vars());
     }
 }

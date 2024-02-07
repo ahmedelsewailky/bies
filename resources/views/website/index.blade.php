@@ -96,7 +96,7 @@
             <div class="section-body">
                 <div class="row">
                     @forelse ($latest as $post)
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-3 mb-4">
                             <div class="post">
                                 <span class="quality">WEB-DL</span>
                                 <div class="post-thumb" style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
