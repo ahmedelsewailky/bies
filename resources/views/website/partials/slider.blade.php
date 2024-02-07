@@ -1,6 +1,7 @@
 @php
     $moviesCategories =  \App\Models\Category::whereParentId(1)->select('id', 'name')->pluck('id', 'name');
-    $latest = \App\Models\Post::whereIn('category_id', $moviesCategories)->orderBy('id', 'desc')->take(3)->get();
+    // $latest = \App\Models\Post::whereIn('category_id', $moviesCategories)->orderBy('id', 'desc')->take(3)->get();
+    $latest = \App\Models\Post::orderBy('id', 'desc')->take(5)->get();
 @endphp
 <div class="slider">
     <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-interval="3000" data-bs-ride="carousel">
