@@ -116,6 +116,7 @@ a:hover {
     display: flex !important;
     align-items: center;
     background-size: cover !important;
+    background-position: top center !important;
 }
 .carousel-item .overlay {
     position: absolute;
