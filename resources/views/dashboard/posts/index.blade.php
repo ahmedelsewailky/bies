@@ -41,7 +41,9 @@
                                 @foreach (\App\Models\Category::whereNull('parent_id')->get() as $parent)
                                     <optgroup label="{{ $parent->name }}">
                                         @foreach (\App\Models\Category::whereParentId($parent->id)->get() as $category)
-                                            <option value="{{ $category->id }}" {{ request()->get('category') == $category->id ? 'selected' : false }}>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}"
+                                                {{ request()->get('category') == $category->id ? 'selected' : false }}>
+                                                {{ $category->name }}</option>
                                         @endforeach
                                     </optgroup>
                                 @endforeach
@@ -166,7 +168,8 @@
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="post" class="d-flex">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-success">تعديل</a>
+                                    <a href="{{ route('posts.edit', $post->id) }}"
+                                        class="btn btn-sm btn-success">تعديل</a>
                                     <button type="submit" onclick="confirm('هل ترغب في حذف هذا القسم بالفعل؟')"
                                         class="btn btn-sm btn-danger ml-1">حذف</button>
                                 </form>

@@ -5,6 +5,9 @@
 @section('title', 'الصفحة الرئيسية')
 
 @section('content')
+
+    @include('website.partials.slider')
+
     <!-- Latest Movies -->
     <section class="section latest-movies-section">
         <div class="container">
@@ -14,30 +17,33 @@
             </div>
 
             <div class="section-body">
-                <div class="section-content-filter">
+                <div class="section-content-filter" id="filterOptions">
                     @foreach ($movies as $name => $id)
-                        <a href="{{ $id }}">{{ $name }}</a>
+                        <a href="#" class="{{ $name }}">{{ $name }}</a>
                     @endforeach
                 </div>
 
-                <div class="owl-carousel">
-                    @forelse ($posts->whereIn('category_id', $movies)->take(10)->get() as $post)
-                        <div class="post">
-                            <span class="quality">WEB-DL</span>
-                            <div class="post-thumb" style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                <div id="ourHolder">
+                    <div class="owl-carousel">
+                        @forelse ($posts->whereIn('category_id', $movies)->take(10)->get() as $post)
+                            <div class="post {{ $post->category->name }}">
+                                <span class="quality">WEB-DL</span>
+                                <div class="post-thumb"
+                                    style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                                </div>
+                                <span class="play-icon"><i class="bx bx-play"></i></span>
+                                <div class="post-content">
+                                    <div class="post-meta meta-category">{{ $post->category->name }}</div>
+                                    <h6 class="post-title">
+                                        <a href="#">{{ $post->title }}</a>
+                                    </h6>
+                                    <p>{{ str($post->description)->words(10) }}</p>
+                                </div>
                             </div>
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <div class="post-content">
-                                <div class="post-meta meta-category">{{ $post->category->name }}</div>
-                                <h6 class="post-title">
-                                    <a href="#">{{ $post->title }}</a>
-                                </h6>
-                                <p>{{ str($post->description)->words(10) }}</p>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="text-center">لا يوجود منشورات</p>
-                    @endforelse
+                        @empty
+                            <p class="text-center">لا يوجود منشورات</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +70,8 @@
                     @forelse ($posts->whereIn('category_id', $series)->take(10)->get() as $post)
                         <div class="post">
                             <span class="quality">WEB-DL</span>
-                            <div class="post-thumb" style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                            <div class="post-thumb"
+                                style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
                             </div>
                             <span class="play-icon"><i class="bx bx-play"></i></span>
                             <div class="post-content">
@@ -99,7 +106,8 @@
                         <div class="col-12 col-md-3 mb-4">
                             <div class="post">
                                 <span class="quality">WEB-DL</span>
-                                <div class="post-thumb" style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                                <div class="post-thumb"
+                                    style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
                                 </div>
                                 <span class="play-icon"><i class="bx bx-play"></i></span>
                                 <div class="post-content">
@@ -116,23 +124,24 @@
                     @endforelse
                 </div>
 
-                <nav aria-label="...">
-                    <ul class="pagination mt-5 p-0 justify-content-start">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                {!! $latest->links('pagination::bootstrap-5') !!}
             </div>
         </div>
     </section>
     <!-- ./Latest Added -->
+@endsection
+
+@section('js')
+    <script>
+        $(function() {
+            $('#filterOptions a').on("click", function() {
+                // fetch the class of the clicked item
+                var ourClass = $(this).attr('class');
+
+                console.log(ourClass);
+
+
+            });
+        });
+    </script>
 @endsection

@@ -19,4 +19,10 @@ class WebsiteController extends Controller
         $latest = Post::orderByDesc('id')->paginate(12);
         return view('website.index', get_defined_vars());
     }
+
+    public function getByCategory(string $slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        return view('website.posts-category', compact('category'));
+    }
 }

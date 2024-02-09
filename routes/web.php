@@ -22,3 +22,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/', WebsiteController::class)
     ->name('website');
 
+Route::get('category/{slug}', [WebsiteController::class, 'getByCategory'])
+    ->name('posts.category');

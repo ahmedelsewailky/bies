@@ -65,6 +65,19 @@ a:hover {
     pointer-events: none;
     transform: translateY(-50%);
 }
+a.navbar-brand,
+a.navbar-brand:hover {
+    color: white;
+    font-weight: 700;
+    font-size: 23px;
+}
+a.navbar-brand span {
+    color: #b196f9;
+    transform: rotateY(180deg);
+    display: inline-block;
+    margin: 0 2px;
+    font-family: serif;
+}
 .navbar .login-button {
     line-height: 35px;
     border-radius: 0.25rem;
@@ -78,6 +91,7 @@ a:hover {
     border: 2px solid #694aea;
     padding: 0;
     font-size: inherit;
+    margin-top: 1.25rem;
 }
 .navbar .dropdown-item {
     color: white;
@@ -87,10 +101,11 @@ a:hover {
     font-weight: 500;
     transition: 0.3s;
 }
-.navbar a.dropdown-item:hover {
+.navbar a.dropdown-item:hover,
+.navbar a.dropdown-item:focus {
     padding-right: 2rem;
     background-color: transparent;
-    color: #705de3;
+    color: #b196f9;
 }
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link.show {
@@ -691,4 +706,53 @@ span.play-icon .bx {
 }
 .app-sidebar .border {
     border: 2px solid #505aa9 !important;
+}
+
+.filter-bar {
+    padding: 1.25rem;
+    border-radius: .5rem;
+    margin: 3rem 0 1.5rem 0;
+    border-bottom: 1px solid #2f3356;
+}
+
+.filter-bar form {
+    display: flex;
+    align-items: end;
+}
+
+.filter-bar .form-select {
+    background-color: transparent;
+    color: white;
+    margin-top: .5rem;
+    margin-left: .5rem;
+    border-color: #53587d;
+    font-size: 13px;
+}
+
+.page-header-cover {
+    height: 670px;
+    width: 100%;
+    background-image: url("../images/background-4.jpg");
+    background-position: 0 -70px;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+}
+
+.page-header-cover .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #00031c 10%, transparent);
+}
+
+.page-title {
+    text-align: center;
+    margin-top: -65px;
+}
+
+.page-title span {
+    color: #6549e9;
+    font-weight: 700;
+    font-size: 28px;
 }

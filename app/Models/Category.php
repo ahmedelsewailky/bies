@@ -28,6 +28,13 @@ class Category extends Model
     ];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['posts'];
+
+    /**
      * Bootstrap the model and its traits.
      *
      * @return void

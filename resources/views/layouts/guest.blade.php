@@ -26,17 +26,9 @@
 
 <body>
     <div id="website">
-        <header class="header">
-            <!-- Navbar -->
-            @include('website.partials.navbar')
-            <!-- ./Navbar -->
-
-            <!-- Slider -->
-            @if (request()->routeIs('website'))
-                @include('website.partials.slider')
-            @endif
-            <!-- ./Slider -->
-        </header>
+        <!-- Navbar -->
+        @include('website.partials.navbar')
+        <!-- ./Navbar -->
 
         @yield('content')
 
@@ -103,6 +95,7 @@
             });
         });
     </script>
+    @yield('js')
 </body>
 
 </html>
