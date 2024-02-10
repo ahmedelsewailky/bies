@@ -6,7 +6,7 @@
 <div class="slider">
     <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-interval="3000" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($latest as $post)
+            @forelse ($latest as $post)
                 <div class="carousel-item active"
                     style="background: url('{{ asset('storage') . '/' . $post->image }}')">
                     <div class="container">
@@ -45,7 +45,11 @@
                         <div class="overlay"></div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="empty-slider">
+                    <p class="text-center">لا توجد منشورات</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>
