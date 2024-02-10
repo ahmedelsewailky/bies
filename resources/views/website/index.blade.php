@@ -29,7 +29,7 @@
                             <div class="post {{ $post->category->name }}">
                                 <span class="quality">WEB-DL</span>
                                 <div class="post-thumb"
-                                    style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                                    style="background-image: url('{{ get_image_from_storage($post) }}')">
                                 </div>
                                 <span class="play-icon"><i class="bx bx-play"></i></span>
                                 <div class="post-content">
@@ -71,7 +71,7 @@
                         <div class="post">
                             <span class="quality">WEB-DL</span>
                             <div class="post-thumb"
-                                style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                                style="background-image: url('{{ get_image_from_storage($post) }}')">
                             </div>
                             <span class="play-icon"><i class="bx bx-play"></i></span>
                             <div class="post-content">
@@ -107,7 +107,7 @@
                             <div class="post">
                                 <span class="quality">WEB-DL</span>
                                 <div class="post-thumb"
-                                    style="background-image: url('{{ asset('storage') . '/' . $post->image }}')">
+                                    style="background-image: url('{{ get_image_from_storage($post) }}')">
                                 </div>
                                 <span class="play-icon"><i class="bx bx-play"></i></span>
                                 <div class="post-content">

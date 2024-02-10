@@ -16,13 +16,14 @@ class WebsiteController extends Controller
         $posts = new Post;
         $movies =  Category::whereParentId(1)->select('id', 'name')->pluck('id', 'name');
         $series =  Category::whereParentId(3)->select('id', 'name')->pluck('id', 'name');
-        $latest = Post::orderByDesc('id')->paginate(12);
+        $latest = Post::orderByDesc('id')->paginate(16);
         return view('website.index', get_defined_vars());
     }
 
     public function getByCategory(string $slug)
     {
         $category = Category::where('slug', $slug)->first();
-        return view('website.posts-category', compact('category'));
+        $posts = $category->posts()->paginate(24);
+        return view('website.posts-category', compact('category', 'posts'));
     }
 }
