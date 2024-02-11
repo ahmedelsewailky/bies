@@ -38,19 +38,89 @@
                             <span>الجودة</span>
                         </div>
                     </div>
-                    <div class="video-short-description">
+
+                    <div class="post-description my-4">
                         <p>{{ $post->description }}</p>
                     </div>
 
-                    <div class="acctress">
-                        <h6 class="cs-page-title">فريق العمل</h6>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="actor-thumb">
-                                    <img src="https://via.placeholder.com/80" alt="actor name here">
-                                    <a href="">احمد حلمي</a>
+                    <div class="block">
+                        <div class="block-header">
+                            <h6 class="cs-page-title">فريق العمل</h6>
+                        </div>
+                        <div class="block-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="actor-item">
+                                        <div class="actor-item-image">
+                                            <img src="https://via.placeholder.com/80" class="py-3" alt="actor name here">
+                                        </div>
+                                        <div class="actor-item-name">
+                                            <a href="">احمد حلمي</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="actor-item">
+                                        <div class="actor-item-image">
+                                            <img src="https://via.placeholder.com/80" class="py-3" alt="actor name here">
+                                        </div>
+                                        <div class="actor-item-name">
+                                            <a href="">كريم عبد العزيز</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="actor-item">
+                                        <div class="actor-item-image">
+                                            <img src="https://via.placeholder.com/80" class="py-3" alt="actor name here">
+                                        </div>
+                                        <div class="actor-item-name">
+                                            <a href="">محمد هنيدي</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="block mt-4">
+                        <div class="block-header">
+                            <h6>شاهد اون لاين</h6>
+                        </div>
+                        <div class="block-body">
+                            <div class="post-player my-4">
+                                <iframe width="850" height="430"
+                                    src="https://www.youtube.com/embed/jDs55BiCSBk?si=wfB7QxQdLinq1D9J" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block mt-4">
+                        <div class="block-header">
+                            <h6>روابط التحميل</h6>
+                        </div>
+                        <div class="block-body">
+                            <a href="" class="download-link">رابط التحميل الأول</a>
+                            <a href="" class="download-link">رابط التحميل الثاني</a>
+                            <a href="" class="download-link">رابط التحميل الثالث</a>
+                            <a href="" class="download-link">رابط التحميل الرابع</a>
+                            <a href="" class="download-link">رابط التحميل الخامس</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12">
+                    <div class="block">
+                        <div class="block-header">
+                            <h6>قد يعجبك أيضا</h6>
+                        </div>
+                        <div class="block-body">
+
                         </div>
                     </div>
                 </div>

@@ -563,6 +563,12 @@ h6.post-title {
     filter: grayscale(1) blur(2px);
 }
 
+.post-description p {
+    font-size: 1rem;
+    text-align: justify;
+    color: #a9aab7;
+}
+
 /* ================================================================ Pagination */
 .page-link,
 .page-link:hover {
@@ -879,47 +885,31 @@ span.play-icon .bx {
 .page-content-wrapper {
     margin-top: 100px;
 }
-
-.actor-thumb {
-    position: relative;
-    border: 1px solid #2d314d;
-}
-
-.actor-thumb img {
-    width: 65px;
-    height: 65px;
-    border-radius: 100%;
-    margin: 1rem auto;
-    display: block;
-}
-
-.actor-thumb a {
-    display: block;
-    width: 100%;
-    background-color: #2d314d;
+/*  =================================================== SinglePage: Actor Item*/
+.actor-item {
+    border: 1px solid #404566;
     text-align: center;
-    line-height: 2;
 }
 
-.actor-thumb a:hover {
-    background-color: #724cec;
+.actor-item-image {
+    padding: 1.5rem 0;
 }
 
-h6.cs-page-title {
-    font-size: 14px;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #2d314d;
-    color: orange;
-    position: relative;
+.actor-item-name {
+    background-color: #2d314d;
+    line-height: 2.5;
 }
 
-h6.cs-page-title::after {
-    position: absolute;
-    content: '';
-    width: 7%;
-    height: 2px;
-    background-color: #ef6d18;
-    bottom: 0;
-    right: 0;
+.actor-item-image img {border-radius: 100%;width: 80px;height: auto;}
+
+.block-header {
+    background-color: #2d314d;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    border-right: 5px solid #ffa500;
+}
+
+.block-header h6 {
+    margin: 0;
 }

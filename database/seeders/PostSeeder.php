@@ -14,12 +14,12 @@ class PostSeeder extends Seeder
     {
         $collections = collect([]);
 
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $title = fake()->unique()->sentence;
             $collections->push([
                 'title' => $title,
                 'slug' => str($title)->slug,
-                'description' => fake()->paragraph(5),
+                'description' => fake()->paragraph(25),
                 'category_id' => rand(5,20),
                 'user_id' => 1,
                 'year' => rand(2000,2024),
@@ -32,7 +32,7 @@ class PostSeeder extends Seeder
             \App\Models\Post::insert($chunk);
         }
 
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             DB::table('posts_links')->insert([
                 'post_id' => rand(1, 4999),
                 'link' => fake()->url
