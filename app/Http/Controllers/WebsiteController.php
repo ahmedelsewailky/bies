@@ -32,4 +32,10 @@ class WebsiteController extends Controller
         $posts = Post::where('title', 'like', '%'.request()->get('q').'%')->paginate(16);
         return view('website.search', compact('posts'));
     }
+
+    public function single(string $slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        return view('website.single', compact('post'));
+    }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\WebsiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
@@ -22,7 +23,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/', WebsiteController::class)
     ->name('website');
 
+Route::get('search', [WebsiteController::class, 'search'])
+    ->name('search');
+
 Route::get('category/{slug}', [WebsiteController::class, 'getByCategory'])
     ->name('posts.category');
 
-Route::get('search', [WebsiteController::class, 'search'])->name('search');
+Route::get('post/{slug}', [WebsiteController::class, 'single'])
+    ->name('posts.single');

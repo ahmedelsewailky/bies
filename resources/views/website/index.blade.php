@@ -35,7 +35,7 @@
                                 <div class="post-content">
                                     <div class="post-meta meta-category">{{ $post->category->name }}</div>
                                     <h6 class="post-title">
-                                        <a href="#">{{ $post->title }}</a>
+                                        <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
                                     </h6>
                                     <p>{{ str($post->description)->words(10) }}</p>
                                 </div>
@@ -77,7 +77,7 @@
                             <div class="post-content">
                                 <div class="post-meta meta-category">{{ $post->category->name }}</div>
                                 <h6 class="post-title">
-                                    <a href="#">{{ $post->title }}</a>
+                                    <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
                                 </h6>
                                 <p>{{ str($post->description)->words(10) }}</p>
                             </div>
@@ -113,7 +113,7 @@
                                 <div class="post-content">
                                     <div class="post-meta meta-category">{{ $post->category->name }}</div>
                                     <h6 class="post-title">
-                                        <a href="#">{{ $post->title }}</a>
+                                        <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
                                     </h6>
                                     <p>{{ str($post->description)->words(10) }}</p>
                                 </div>
