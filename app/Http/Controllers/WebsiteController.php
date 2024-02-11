@@ -26,4 +26,10 @@ class WebsiteController extends Controller
         $posts = $category->posts()->paginate(24);
         return view('website.posts-category', compact('category', 'posts'));
     }
+
+    public function search()
+    {
+        $posts = Post::where('title', 'like', '%'.request()->get('q').'%')->paginate(16);
+        return view('website.search', compact('posts'));
+    }
 }

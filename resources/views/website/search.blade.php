@@ -2,7 +2,7 @@
 @extends('layouts.guest')
 
 {{-- Page Title --}}
-@section('title', $category->name)
+@section('title', 'بحث')
 
 @section('content')
     <div class="page-header-cover">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="page-title">
-        <h4>تصفح جديد <span>{{ $category->name }}</span></h4>
+        <h4>انت الآن تحاول البحث عن : <span>{{ request()->get('q') }}</span></h4>
     </div>
 
     <section class="section">

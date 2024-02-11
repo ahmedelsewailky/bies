@@ -27,7 +27,7 @@
                     <div class="owl-carousel">
                         @forelse ($posts->whereIn('category_id', $movies)->take(10)->get() as $post)
                             <div class="post {{ $post->category->name }}">
-                                <span class="quality">WEB-DL</span>
+                                <span class="quality">{{ $post->quality }}</span>
                                 <div class="post-thumb"
                                     style="background-image: url('{{ get_image_from_storage($post) }}')">
                                 </div>
