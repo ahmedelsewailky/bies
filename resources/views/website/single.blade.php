@@ -5,32 +5,56 @@
 @section('title', $post->title)
 
 @section('content')
-    <div class="page-header-cover">
-        <span class="overlay"></span>
-    </div>
+    <div class="page-content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="post-image">
+                        <img src="{{ get_image_from_storage($post) }}" class="mw-100" alt="{{ $post->title }}">
+                    </div>
+                </div>
 
-    <section class="section">
-        <div class="section-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-3 mb-4">
-                        <div class="post">
-                            <span class="quality">{{ DataArray::QUALITIES[$post->quality] }}</span>
-                            <div class="post-thumb"
-                                style="background-image: url('{{ get_image_from_storage($post) }}')">
-                            </div>
-                            <span class="play-icon"><i class="bx bx-play"></i></span>
-                            <div class="post-content">
-                                <div class="post-meta meta-category">{{ $post->category->name }}</div>
-                                <h6 class="post-title">
-                                    <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
-                                </h6>
-                                <p>{{ str($post->description)->words(10) }}</p>
+                <div class="col-md-8">
+                    <h1>{{ $post->title }}</h1>
+                    <div class="video-meta my-3 position-relative">
+                        <div class="video-meta-rate">
+                            <i class="bx bx-folder"></i>
+                            {{ $post->category->name }}
+                        </div>
+                        <div class="video-meta-rate">
+                            <i class="bx bxs-star"></i>
+                            6.2
+                        </div>
+                        <div class="video-meta-duration">
+                            <i class="bx bx-time"></i>
+                            1hr 2mins
+                        </div>
+                        <div class="video-meta-years">
+                            <i class="bx bx-calendar"></i>
+                            2023
+                        </div>
+                        <div class="video-meta-quality">
+                            {{ DataArray::QUALITIES[$post->quality] }}
+                            <span>الجودة</span>
+                        </div>
+                    </div>
+                    <div class="video-short-description">
+                        <p>{{ $post->description }}</p>
+                    </div>
+
+                    <div class="acctress">
+                        <h6 class="cs-page-title">فريق العمل</h6>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="actor-thumb">
+                                    <img src="https://via.placeholder.com/80" alt="actor name here">
+                                    <a href="">احمد حلمي</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
