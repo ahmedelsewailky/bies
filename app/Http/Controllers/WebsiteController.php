@@ -36,6 +36,7 @@ class WebsiteController extends Controller
     public function single(string $slug)
     {
         $post = Post::where('slug', $slug)->first();
-        return view('website.single', compact('post'));
+        $related_posts = Post::whereCategoryId($post->category_id)->take(10)->get();
+        return view('website.single', compact('post', 'related_posts'));
     }
 }

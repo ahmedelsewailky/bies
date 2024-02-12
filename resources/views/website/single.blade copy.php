@@ -39,14 +39,6 @@
                         </div>
                     </div>
 
-                    <div class="post-player my-4">
-                        <iframe width="850" height="430"
-                            src="https://www.youtube.com/embed/jDs55BiCSBk?si=wfB7QxQdLinq1D9J" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
-                    </div>
-
                     <div class="post-description my-4">
                         <p>{{ $post->description }}</p>
                     </div>
@@ -93,6 +85,21 @@
 
                     <div class="block mt-4">
                         <div class="block-header">
+                            <h6>شاهد اون لاين</h6>
+                        </div>
+                        <div class="block-body">
+                            <div class="post-player my-4">
+                                <iframe width="850" height="430"
+                                    src="https://www.youtube.com/embed/jDs55BiCSBk?si=wfB7QxQdLinq1D9J" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block mt-4">
+                        <div class="block-header">
                             <h6>روابط التحميل</h6>
                         </div>
                         <div class="block-body">
@@ -103,6 +110,8 @@
                             <a href="#" class="download-link">رابط التحميل الخامس</a>
                         </div>
                     </div>
+
+
                 </div>
 
                 <div class="col-md-12">
@@ -111,26 +120,7 @@
                             <h6>قد يعجبك أيضا</h6>
                         </div>
                         <div class="block-body">
-                            <div class="owl-carousel">
-                                @forelse ($related_posts as $post)
-                                    <div class="post {{ $post->category->name }}">
-                                        <span class="quality">{{ $post->quality }}</span>
-                                        <div class="post-thumb"
-                                            style="background-image: url('{{ get_image_from_storage($post) }}')">
-                                        </div>
-                                        <span class="play-icon"><i class="bx bx-play"></i></span>
-                                        <div class="post-content">
-                                            <div class="post-meta meta-category">{{ $post->category->name }}</div>
-                                            <h6 class="post-title">
-                                                <a href="{{ route('posts.single', $post->slug) }}">{{ $post->title }}</a>
-                                            </h6>
-                                            <p>{{ str($post->description)->words(10) }}</p>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p class="text-center">لا يوجود منشورات</p>
-                                @endforelse
-                            </div>
+
                         </div>
                     </div>
                 </div>

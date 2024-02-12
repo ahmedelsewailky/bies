@@ -913,3 +913,17 @@ span.play-icon .bx {
 .block-header h6 {
     margin: 0;
 }
+
+a.download-link:hover {
+    background-color: #028175;
+}
+
+a.download-link {
+    background-color: #009688;
+    padding: 1rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    margin-left: 0.25rem;
+    font-weight: 700;
+    border-radius: 5px;
+}
